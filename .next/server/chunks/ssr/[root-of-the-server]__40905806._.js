@@ -71,7 +71,7 @@ function Navbar() {
             sessionStorage.removeItem("supabase.auth.token");
             localStorage.removeItem("supabase.auth.token");
             setShowLogoutModal(false);
-            router.push("/pages/login");
+            router.push("/");
         } catch (error) {
             console.error("Logout failed:", error);
         }
@@ -378,9 +378,8 @@ function Navbar() {
                                     className: "flex flex-col space-y-6",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            className: "text-white text-base font-medium leading-normal hover:text-lightText transition-colors py-2 border-b border-[#382935]",
+                                            className: "text-white text-base font-medium leading-normal hover:text-lightText transition-colors",
                                             href: "/pages/dashboard",
-                                            onClick: ()=>setIsMenuOpen(false),
                                             children: "Dashboard"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/Navbar.js",
@@ -388,23 +387,39 @@ function Navbar() {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            className: "text-white text-base font-medium leading-normal hover:text-lightText transition-colors py-2 border-b border-[#382935]",
-                                            href: "/pages/transactions",
-                                            onClick: ()=>setIsMenuOpen(false),
+                                            className: "text-white text-base font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard/transactions",
                                             children: "Transactions"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/Navbar.js",
-                                            lineNumber: 185,
+                                            lineNumber: 184,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            className: "text-white text-base font-medium leading-normal hover:text-lightText transition-colors py-2 border-b border-[#382935]",
-                                            href: "/pages/reports",
-                                            onClick: ()=>setIsMenuOpen(false),
+                                            className: "text-white text-base font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard/reports",
                                             children: "Reports"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/Navbar.js",
-                                            lineNumber: 192,
+                                            lineNumber: 190,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            className: "text-white text-base font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard/budget",
+                                            children: "Budget"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 196,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            className: "text-white text-base font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard/goal",
+                                            children: "Goal"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 202,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -417,12 +432,12 @@ function Navbar() {
                                                 children: "Logout"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/components/Navbar.js",
-                                                lineNumber: 206,
+                                                lineNumber: 215,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/Navbar.js",
-                                            lineNumber: 199,
+                                            lineNumber: 208,
                                             columnNumber: 17
                                         }, this)
                                     ]
@@ -469,14 +484,14 @@ function Navbar() {
                                                 d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/components/Navbar.js",
-                                                lineNumber: 230,
+                                                lineNumber: 239,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                                 points: "16,17 21,12 16,7"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/components/Navbar.js",
-                                                lineNumber: 231,
+                                                lineNumber: 240,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -486,18 +501,18 @@ function Navbar() {
                                                 y2: "12"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/components/Navbar.js",
-                                                lineNumber: 232,
+                                                lineNumber: 241,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/components/Navbar.js",
-                                        lineNumber: 219,
+                                        lineNumber: 228,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/Navbar.js",
-                                    lineNumber: 218,
+                                    lineNumber: 227,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -505,7 +520,7 @@ function Navbar() {
                                     children: "Confirm Logout"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/Navbar.js",
-                                    lineNumber: 235,
+                                    lineNumber: 244,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -513,13 +528,13 @@ function Navbar() {
                                     children: "Are you sure you want to log out?"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/Navbar.js",
-                                    lineNumber: 238,
+                                    lineNumber: 247,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/components/Navbar.js",
-                            lineNumber: 217,
+                            lineNumber: 226,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -531,7 +546,7 @@ function Navbar() {
                                     children: "Yes, Logout"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/Navbar.js",
-                                    lineNumber: 244,
+                                    lineNumber: 253,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -540,24 +555,24 @@ function Navbar() {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/Navbar.js",
-                                    lineNumber: 250,
+                                    lineNumber: 259,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/components/Navbar.js",
-                            lineNumber: 243,
+                            lineNumber: 252,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/components/Navbar.js",
-                    lineNumber: 216,
+                    lineNumber: 225,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/components/Navbar.js",
-                lineNumber: 215,
+                lineNumber: 224,
                 columnNumber: 9
             }, this)
         ]

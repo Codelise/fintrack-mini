@@ -19,7 +19,6 @@ export class BudgetService {
 
   async createBudget(budgetData) {
     try {
-      // Update validation to only require budget_name, not category
       if (
         !budgetData.user_id ||
         !budgetData.budget_name ||
@@ -42,7 +41,6 @@ export class BudgetService {
 
   async createMultipleBudgets(budgetsArray) {
     try {
-      // Update validation to only require budget_name, not category
       for (const budget of budgetsArray) {
         if (!budget.user_id || !budget.budget_name || !budget.amount) {
           throw new Error(
@@ -64,11 +62,24 @@ export class BudgetService {
 
   async updateBudget(budgetId, updates) {
     try {
+      console.log("Service: Updating budget", budgetId, updates);
+
+      if (!budgetId) {
+        throw new Error("Budget ID is required");
+      }
+
       const result = await updateBudgetQuery(budgetId, updates);
+      console.log("Service: Update result", result);
+
+      if (result.error) {
+        console.error("Service: Update failed:", result.error);
+        throw result.error;
+      }
+
       return result;
     } catch (error) {
-      console.error("Error updating budget:", error);
-      return { data: null, error };
+      console.error("Service: Error updating budget:", error);
+      throw error;
     }
   }
 

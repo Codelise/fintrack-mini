@@ -73,3 +73,13 @@ Activity 6:
 - modified hooks/Auth.js 
 - modified hooks/useBudget.js
 - modified set Budget and set Goal page
+
+Nov 20:
+- created goal page with functionalities
+- modified budget page to have functionalities
+- temporary removed the category on api/budget/route.js to display budgets on budget page 
+- modified Navbar.js to show links on mobile. Also after logout, it will be directed to landpage not login page
+- enabled RLS in budgets table
+- modified and fixed api/budget/route.js = from id to budget_id
+
+FOR TOMORROW GOAL PAGE

@@ -23,7 +23,7 @@ export default function Navbar() {
       localStorage.removeItem("supabase.auth.token");
 
       setShowLogoutModal(false);
-      router.push("/pages/login");
+      router.push("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -176,25 +176,34 @@ export default function Navbar() {
 
               <nav className="flex flex-col space-y-6">
                 <Link
-                  className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors py-2 border-b border-[#382935]"
+                  className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
                   href="/pages/dashboard"
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <Link
-                  className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors py-2 border-b border-[#382935]"
-                  href="/pages/transactions"
-                  onClick={() => setIsMenuOpen(false)}
+                  className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
+                  href="/pages/dashboard/transactions"
                 >
                   Transactions
                 </Link>
                 <Link
-                  className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors py-2 border-b border-[#382935]"
-                  href="/pages/reports"
-                  onClick={() => setIsMenuOpen(false)}
+                  className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
+                  href="/pages/dashboard/reports"
                 >
                   Reports
+                </Link>
+                <Link
+                  className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
+                  href="/pages/dashboard/budget"
+                >
+                  Budget
+                </Link>
+                <Link
+                  className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
+                  href="/pages/dashboard/goal"
+                >
+                  Goal
                 </Link>
                 <button
                   onClick={() => {
