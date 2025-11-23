@@ -21,3 +21,71 @@ Nov 7 TODO: LOGIN, BUDGETS, DASHBOARD
 
 Nov 8:
 - fixed AuthGuard issue
+api - for heavy query
+constants - api endpoints for each query
+service - business logic
+hooks - container for services functions
+
+- constants folder will use api url to access the api folder
+- service will be like the functions of the project (getTransactions, calculate)
+- custom hooks will be used for example, sign up, login, display Users, display transactions?
+
+Nov 9:
+- rename category.js to route.js
+- services/auth-service.js = for signUp and Login functions
+- hooks/useAuth = for auth-service.js container hooks
+- signup page imported useAuth hook
+- login page import useAuth hook
+
+
+Nov 14:
+- add is_onboarded column in users table = to check for user's first time logged in
+- temporarily disabled AuthGuard and modified main layout.js
+- disbaled authguard in login.js
+- setBudget page = for setting budget after the user's first time logged in
+- setGoal page = for setting goal after the user's first time logged in
+- created services/onboarding-service.js = to check if the user was onboard or not (for setBuget and setGoal)
+- created hooks/useOnboarding.js = to import services/onboarding-services
+- implement useOnboarding on useAuth hook
+- modified  login page to use onboard to check if the user's first time logged in or not
+- context/UserContext.js = to manage global user state
+- modified api/budget/route.js to add budget query
+- created services/budget-service.js = functions for setting budget
+- created hooks/useBudget.js
+- add budget_name to budgets table
+- modified api/goal/route.js  = new queries
+- created services/goal-service.js = function for goal queries (first time log in)
+- created hooks/useGoal.js = for services/goal-service.js
+- update Navbar.js component to be responsive and add a logout confirm modal
+- made dashboard a bit responsive hehehe
+
+Nov 15:
+- added life to landing page
+- remove Header.js from sign up and login
+- added budget and goal links to dashboard Navbar.js
+- created Budget page
+
+Activity 6:
+- npm install @tanstack/react-query
+- created lib/react-query.js
+- created app/Provider.js for react query
+- modified main layout.js for Provider.js
+- modified hooks/Auth.js 
+- modified hooks/useBudget.js
+- modified set Budget and set Goal page
+
+Nov 20:
+- created goal page with functionalities
+- modified budget page to have functionalities
+- temporary removed the category on api/budget/route.js to display budgets on budget page 
+- modified Navbar.js to show links on mobile. Also after logout, it will be directed to landpage not login page
+- enabled RLS in budgets table
+- modified and fixed api/budget/route.js = from id to budget_id
+
+Nov 23:
+- modified useGoal.js hook to work
+- modified Goal page = implement the changes from useGoal hook and Implemented modal
+- modified api/goals/route.js = changed id to goal_id
+- added budget_id and goal_id to transactions table so users can select what transactions to choose
+
+TO BE IMPLEMENTED: transactions
