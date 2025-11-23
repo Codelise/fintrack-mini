@@ -590,14 +590,14 @@ async function createMultipleGoals(goalsArray) {
     };
 }
 async function updateGoal(goalId, updates) {
-    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").update(updates).eq("id", goalId).select();
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").update(updates).eq("goal_id", goalId).select();
     return {
         data,
         error
     };
 }
 async function deleteGoal(goalId) {
-    const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").delete().eq("id", goalId);
+    const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").delete().eq("goal_id", goalId);
     return {
         error
     };
@@ -768,6 +768,11 @@ const useGoal = ()=>{
                     });
                 }
             }
+        }["useGoal.useMutation[createGoalMutation]"],
+        onError: {
+            "useGoal.useMutation[createGoalMutation]": (error)=>{
+                console.error("Error creating goal:", error);
+            }
         }["useGoal.useMutation[createGoalMutation]"]
     });
     const createMultipleGoalsMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
@@ -790,26 +795,34 @@ const useGoal = ()=>{
             }
         }["useGoal.useMutation[updateGoalMutation]"],
         onSuccess: {
-            "useGoal.useMutation[updateGoalMutation]": (result, variables)=>{
+            "useGoal.useMutation[updateGoalMutation]": (result)=>{
                 if (result.data) {
-                    queryClient.setQueryData(goalKeys.lists(), {
-                        "useGoal.useMutation[updateGoalMutation]": (old)=>old === null || old === void 0 ? void 0 : old.map({
-                                "useGoal.useMutation[updateGoalMutation]": (goal)=>goal.id === variables.goalId ? result.data[0] : goal
-                            }["useGoal.useMutation[updateGoalMutation]"])
-                    }["useGoal.useMutation[updateGoalMutation]"]);
+                    queryClient.invalidateQueries({
+                        queryKey: goalKeys.lists()
+                    });
                 }
+            }
+        }["useGoal.useMutation[updateGoalMutation]"],
+        onError: {
+            "useGoal.useMutation[updateGoalMutation]": (error)=>{
+                console.error("Error updating goal:", error);
             }
         }["useGoal.useMutation[updateGoalMutation]"]
     });
     const deleteGoalMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
-        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].deleteGoal,
+        mutationFn: {
+            "useGoal.useMutation[deleteGoalMutation]": (goalId)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].deleteGoal(goalId)
+        }["useGoal.useMutation[deleteGoalMutation]"],
         onSuccess: {
-            "useGoal.useMutation[deleteGoalMutation]": (result, variables)=>{
-                queryClient.setQueryData(goalKeys.lists(), {
-                    "useGoal.useMutation[deleteGoalMutation]": (old)=>old === null || old === void 0 ? void 0 : old.filter({
-                            "useGoal.useMutation[deleteGoalMutation]": (goal)=>goal.id !== variables
-                        }["useGoal.useMutation[deleteGoalMutation]"])
-                }["useGoal.useMutation[deleteGoalMutation]"]);
+            "useGoal.useMutation[deleteGoalMutation]": ()=>{
+                queryClient.invalidateQueries({
+                    queryKey: goalKeys.lists()
+                });
+            }
+        }["useGoal.useMutation[deleteGoalMutation]"],
+        onError: {
+            "useGoal.useMutation[deleteGoalMutation]": (error)=>{
+                console.error("Error deleting goal: ", error);
             }
         }["useGoal.useMutation[deleteGoalMutation]"]
     });
@@ -828,12 +841,12 @@ const useGoal = ()=>{
     const deleteGoal = (goalId)=>{
         return deleteGoalMutation.mutateAsync(goalId);
     };
-    const clearError = ()=>{
-        createGoalMutation.reset();
-        createMultipleGoalsMutation.reset();
-        updateGoalMutation.reset();
-        deleteGoalMutation.reset();
-    };
+    // const clearError = () => {
+    //   createGoalMutation.reset();
+    //   createMultipleGoalsMutation.reset();
+    //   updateGoalMutation.reset();
+    //   deleteGoalMutation.reset();
+    // };
     return {
         // Query methods
         getGoals,
@@ -842,7 +855,7 @@ const useGoal = ()=>{
         createMultipleGoals,
         updateGoal,
         deleteGoal,
-        clearError,
+        // clearError,
         // Mutation states
         mutations: {
             createGoal: createGoalMutation,
@@ -1443,13 +1456,15 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 function GoalPage() {
-    var _mutations_createGoal, _mutations_updateGoal, _mutations_createGoal1, _mutations_updateGoal1;
     _s();
     const { user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"])();
-    const { getGoals, createGoal, updateGoal, deleteGoal, mutations } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useGoal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGoal"])();
+    const { getGoals, createGoal, updateGoal, deleteGoal, mutations: { createGoal: createMutation, updateGoal: updateMutation, deleteGoal: deleteMutation } } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useGoal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGoal"])();
     const { data: goalsData, isLoading, error } = getGoals(user === null || user === void 0 ? void 0 : user.id);
     const [isModalOpen, setIsModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [editingGoal, setEditingGoal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [deletingGoal, setDeletingGoal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         goal_name: "",
         target_amount: "",
@@ -1457,22 +1472,31 @@ function GoalPage() {
         deadline: ""
     });
     const goals = (goalsData === null || goalsData === void 0 ? void 0 : goalsData.data) || [];
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "GoalPage.useEffect": ()=>{
+            setMounted(true);
+        }
+    }["GoalPage.useEffect"], []);
     const handleCreateGoal = async (e)=>{
         e.preventDefault();
-        const result = await createGoal({
-            ...formData,
-            user_id: user.id,
-            target_amount: parseFloat(formData.target_amount),
-            current_amount: parseFloat(formData.current_amount) || 0
-        });
-        if (result.data) {
-            setIsModalOpen(false);
-            setFormData({
-                goal_name: "",
-                target_amount: "",
-                current_amount: "",
-                deadline: ""
+        try {
+            const result = await createGoal({
+                ...formData,
+                user_id: user === null || user === void 0 ? void 0 : user.id,
+                target_amount: parseFloat(formData.target_amount),
+                current_amount: parseFloat(formData.current_amount) || 0
             });
+            if (result.data) {
+                setIsModalOpen(false);
+                setFormData({
+                    goal_name: "",
+                    target_amount: "",
+                    current_amount: "",
+                    deadline: ""
+                });
+            }
+        } catch (error) {
+            console.error("Error creating goal:", error);
         }
     };
     const handleEditGoal = (goal)=>{
@@ -1487,28 +1511,44 @@ function GoalPage() {
     };
     const handleUpdateGoal = async (e)=>{
         e.preventDefault();
-        const result = await updateGoal(editingGoal.id, {
-            ...formData,
-            target_amount: parseFloat(formData.target_amount),
-            current_amount: parseFloat(formData.current_amount)
-        });
-        if (result.data) {
-            setIsModalOpen(false);
-            setEditingGoal(null);
-            setFormData({
-                goal_name: "",
-                target_amount: "",
-                current_amount: "",
-                deadline: ""
+        try {
+            const result = await updateGoal(editingGoal.goal_id, {
+                // FIXED: Use goal_id
+                ...formData,
+                target_amount: parseFloat(formData.target_amount),
+                current_amount: parseFloat(formData.current_amount)
             });
+            if (result.data) {
+                setIsModalOpen(false);
+                setEditingGoal(null);
+                setFormData({
+                    goal_name: "",
+                    target_amount: "",
+                    current_amount: "",
+                    deadline: ""
+                });
+            }
+        } catch (error) {
+            console.error("Error updating goal:", error);
         }
     };
-    const handleDeleteGoal = async (goalId)=>{
-        if (confirm("Are you sure you want to delete this goal?")) {
-            await deleteGoal(goalId);
+    const handleDeleteClick = (goal)=>{
+        setDeletingGoal(goal);
+        setIsDeleteModalOpen(true);
+    };
+    const handleDeleteConfirm = async ()=>{
+        if (deletingGoal) {
+            try {
+                await deleteGoal(deletingGoal.goal_id); // FIXED: Use goal_id
+                setIsDeleteModalOpen(false);
+                setDeletingGoal(null);
+            } catch (error) {
+                console.error("Error deleting goal:", error);
+            }
         }
     };
     const calculateProgress = (current, target)=>{
+        if (!target || target === 0) return 0;
         return Math.min(current / target * 100, 100);
     };
     const formatCurrency = (amount)=>{
@@ -1525,62 +1565,62 @@ function GoalPage() {
         return "bg-red-500";
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "jsx-1bec3d89ad37a228" + " " + "relative flex h-auto min-h-screen w-full flex-col bg-[#21121e] overflow-x-hidden",
+        className: "jsx-53a858fead386cf" + " " + "relative flex h-auto min-h-screen w-full flex-col bg-[#21121e] overflow-x-hidden",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "jsx-1bec3d89ad37a228" + " " + "absolute top-1/4 left-1/4 w-32 h-32 bg-[#9c167f]/10 rounded-full blur-xl animate-pulse-slow"
+                className: "jsx-53a858fead386cf" + " " + "absolute top-1/4 left-1/4 w-32 h-32 bg-[#9c167f]/10 rounded-full blur-xl animate-pulse-slow"
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                lineNumber: 102,
+                lineNumber: 142,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "jsx-1bec3d89ad37a228" + " " + "absolute bottom-1/3 right-1/4 w-24 h-24 bg-[#9c167f]/5 rounded-full blur-lg animate-pulse-slow animation-delay-1000"
+                className: "jsx-53a858fead386cf" + " " + "absolute bottom-1/3 right-1/4 w-24 h-24 bg-[#9c167f]/5 rounded-full blur-lg animate-pulse-slow animation-delay-1000"
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                lineNumber: 103,
+                lineNumber: 143,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Navbar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                lineNumber: 104,
+                lineNumber: 145,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "jsx-1bec3d89ad37a228" + " " + "layout-container flex h-full grow flex-col z-10",
+                className: "jsx-53a858fead386cf" + " " + "layout-container flex h-full grow flex-col z-10",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "jsx-1bec3d89ad37a228" + " " + "px-4 sm:px-8 md:px-12 lg:px-20 xl:px-40 flex flex-1 justify-center py-5",
+                    className: "jsx-53a858fead386cf" + " " + "px-4 sm:px-8 md:px-12 lg:px-20 xl:px-40 flex flex-1 justify-center py-5",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-1bec3d89ad37a228" + " " + "layout-content-container flex flex-col w-full max-w-[960px] flex-1",
+                        className: "jsx-53a858fead386cf" + " " + "layout-content-container flex flex-col w-full  flex-1",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-                            className: "jsx-1bec3d89ad37a228" + " " + "flex-1 mt-6 md:mt-10",
+                            className: "jsx-53a858fead386cf" + " " + "flex-1 mt-6 md:mt-10",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-1bec3d89ad37a228" + " " + "flex flex-wrap justify-between gap-4 p-4 items-center animate-fade-in-up",
+                                    className: "jsx-53a858fead386cf" + " " + "flex flex-wrap justify-between gap-4 p-4 items-center animate-fade-in-up",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "jsx-1bec3d89ad37a228" + " " + "flex min-w-72 flex-col gap-2",
+                                            className: "jsx-53a858fead386cf" + " " + "flex min-w-72 flex-col gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]",
+                                                    className: "jsx-53a858fead386cf" + " " + "text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]",
                                                     children: "My Goals"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 113,
+                                                    lineNumber: 154,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "text-[#c695bb] text-base font-normal leading-normal",
+                                                    className: "jsx-53a858fead386cf" + " " + "text-[#c695bb] text-base font-normal leading-normal",
                                                     children: goals.length > 0 ? "You have ".concat(goals.length, " active goal").concat(goals.length !== 1 ? "s" : "") : "Track your financial goals and monitor your progress."
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 116,
+                                                    lineNumber: 157,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 112,
+                                            lineNumber: 153,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1594,269 +1634,180 @@ function GoalPage() {
                                                 });
                                                 setIsModalOpen(true);
                                             },
-                                            className: "jsx-1bec3d89ad37a228" + " " + "group relative flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-[#b51a97] hover:shadow-lg hover:shadow-[#9c167f]/40 hover:-translate-y-0.5",
+                                            className: "jsx-53a858fead386cf" + " " + "group relative flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-[#b51a97] hover:shadow-lg hover:shadow-[#9c167f]/40 hover:-translate-y-0.5",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "truncate relative z-10",
+                                                    className: "jsx-53a858fead386cf" + " " + "truncate relative z-10",
                                                     children: "Add New Goal"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 137,
+                                                    lineNumber: 178,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+                                                    className: "jsx-53a858fead386cf" + " " + "absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 138,
+                                                    lineNumber: 179,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 124,
+                                            lineNumber: 165,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 111,
+                                    lineNumber: 152,
                                     columnNumber: 15
                                 }, this),
                                 isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-1bec3d89ad37a228" + " " + "mt-8 flex justify-center",
+                                    className: "jsx-53a858fead386cf" + " " + "mt-8 flex justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "jsx-1bec3d89ad37a228" + " " + "text-[#c695bb] flex items-center gap-2",
+                                        className: "jsx-53a858fead386cf" + " " + "text-[#c695bb] flex items-center gap-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "jsx-1bec3d89ad37a228" + " " + "w-5 h-5 border-2 border-[#9c167f] border-t-transparent rounded-full animate-spin"
+                                                className: "jsx-53a858fead386cf" + " " + "w-5 h-5 border-2 border-[#9c167f] border-t-transparent rounded-full animate-spin"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                lineNumber: 146,
+                                                lineNumber: 187,
                                                 columnNumber: 21
                                             }, this),
                                             "Loading goals..."
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                        lineNumber: 145,
+                                        lineNumber: 186,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 144,
+                                    lineNumber: 185,
                                     columnNumber: 17
                                 }, this),
                                 error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-1bec3d89ad37a228" + " " + "mt-8 flex justify-center",
+                                    className: "jsx-53a858fead386cf" + " " + "mt-8 flex justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "jsx-1bec3d89ad37a228" + " " + "text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg p-4 animate-shake",
+                                        className: "jsx-53a858fead386cf" + " " + "text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg p-4 animate-shake",
                                         children: [
                                             "Error loading goals: ",
                                             error.message
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                        lineNumber: 155,
+                                        lineNumber: 196,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 154,
+                                    lineNumber: 195,
                                     columnNumber: 17
                                 }, this),
                                 !isLoading && !error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-1bec3d89ad37a228" + " " + "mt-6 md:mt-8 flex flex-col gap-4 px-4",
+                                    className: "jsx-53a858fead386cf" + " " + "mt-6 md:mt-8 flex flex-col gap-4 px-4",
                                     children: goals.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "jsx-1bec3d89ad37a228" + " " + "text-center py-12 animate-fade-in",
+                                        className: "jsx-53a858fead386cf" + " " + "text-center py-12 animate-fade-in",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "jsx-1bec3d89ad37a228" + " " + "text-[#c695bb] text-lg mb-4",
+                                                className: "jsx-53a858fead386cf" + " " + "text-[#c695bb] text-lg mb-4",
                                                 children: "No goals found"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                lineNumber: 166,
+                                                lineNumber: 207,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "jsx-1bec3d89ad37a228" + " " + "text-[#c695bb] text-sm",
+                                                className: "jsx-53a858fead386cf" + " " + "text-[#c695bb] text-sm",
                                                 children: "Create your first goal to start tracking your financial progress"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                lineNumber: 169,
+                                                lineNumber: 210,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                        lineNumber: 165,
+                                        lineNumber: 206,
                                         columnNumber: 21
                                     }, this) : goals.map((goal, index)=>{
-                                        const progress = calculateProgress(goal.current_amount, goal.target_amount);
+                                        const progress = calculateProgress(goal.current_amount || 0, goal.target_amount || 1);
                                         const daysLeft = Math.ceil((new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24));
                                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             style: {
                                                 animationDelay: "".concat(index * 100, "ms")
                                             },
-                                            className: "jsx-1bec3d89ad37a228" + " " + "group flex flex-col gap-4 bg-[#321b2d] p-6 justify-between rounded-xl border border-[#63365a] transition-all duration-300 hover:border-[#9c167f] hover:shadow-lg hover:shadow-[#9c167f]/20 animate-fade-in-up",
+                                            className: "jsx-53a858fead386cf" + " " + "group flex flex-col gap-4 bg-[#321b2d] p-6 justify-between rounded-xl border border-[#63365a] transition-all duration-300 hover:border-[#9c167f] hover:shadow-lg hover:shadow-[#9c167f]/20 ".concat(mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"),
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "jsx-1bec3d89ad37a228" + " " + "flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full",
+                                                className: "jsx-53a858fead386cf" + " " + "flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "jsx-1bec3d89ad37a228" + " " + "text-white flex items-center justify-center rounded-lg bg-[#63365a] shrink-0 size-12 transition-all duration-300 group-hover:bg-[#9c167f] group-hover:scale-105",
+                                                        className: "jsx-53a858fead386cf" + " " + "text-white flex items-center justify-center rounded-lg bg-[#63365a] shrink-0 size-12 transition-all duration-300 group-hover:bg-[#9c167f] group-hover:scale-105",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "jsx-1bec3d89ad37a228" + " " + "material-symbols-outlined text-2xl",
+                                                            className: "jsx-53a858fead386cf" + " " + "material-symbols-outlined text-2xl",
                                                             children: "flag"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                            lineNumber: 193,
+                                                            lineNumber: 238,
                                                             columnNumber: 31
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                        lineNumber: 192,
+                                                        lineNumber: 237,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "jsx-1bec3d89ad37a228" + " " + "flex flex-col justify-center flex-grow min-w-0",
+                                                        className: "jsx-53a858fead386cf" + " " + "flex flex-col justify-center flex-grow min-w-0",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-1bec3d89ad37a228" + " " + "flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4",
+                                                                className: "jsx-53a858fead386cf" + " " + "flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "jsx-1bec3d89ad37a228" + " " + "text-white text-lg font-bold leading-normal line-clamp-1",
+                                                                        className: "jsx-53a858fead386cf" + " " + "text-white text-lg font-bold leading-normal line-clamp-1",
                                                                         children: goal.goal_name
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                        lineNumber: 200,
+                                                                        lineNumber: 245,
                                                                         columnNumber: 33
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "jsx-1bec3d89ad37a228" + " " + "flex items-center gap-4 text-sm",
+                                                                        className: "jsx-53a858fead386cf" + " " + "flex items-center gap-4 text-sm",
                                                                         children: [
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "jsx-1bec3d89ad37a228" + " " + "text-[#c695bb]",
+                                                                                className: "jsx-53a858fead386cf" + " " + "text-[#c695bb]",
                                                                                 children: [
                                                                                     "Target: ",
                                                                                     formatCurrency(goal.target_amount)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                                lineNumber: 204,
+                                                                                lineNumber: 249,
                                                                                 columnNumber: 35
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "jsx-1bec3d89ad37a228" + " " + "text-[#c695bb]",
+                                                                                className: "jsx-53a858fead386cf" + " " + "text-[#c695bb]",
                                                                                 children: [
                                                                                     "Saved: ",
                                                                                     formatCurrency(goal.current_amount)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                                lineNumber: 207,
+                                                                                lineNumber: 252,
                                                                                 columnNumber: 35
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "jsx-1bec3d89ad37a228" + " " + "px-2 py-1 rounded-full text-xs font-medium ".concat(daysLeft < 0 ? "bg-red-500/20 text-red-400" : daysLeft < 30 ? "bg-yellow-500/20 text-yellow-400" : "bg-green-500/20 text-green-400"),
+                                                                                className: "jsx-53a858fead386cf" + " " + "px-2 py-1 rounded-full text-xs font-medium ".concat(daysLeft < 0 ? "bg-red-500/20 text-red-400" : daysLeft < 30 ? "bg-yellow-500/20 text-yellow-400" : "bg-green-500/20 text-green-400"),
                                                                                 children: daysLeft < 0 ? "Overdue" : "".concat(daysLeft, " days left")
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                                lineNumber: 210,
+                                                                                lineNumber: 255,
                                                                                 columnNumber: 35
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
-                                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                        lineNumber: 203,
-                                                                        columnNumber: 33
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                lineNumber: 199,
-                                                                columnNumber: 31
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-1bec3d89ad37a228" + " " + "mt-3",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "jsx-1bec3d89ad37a228" + " " + "flex justify-between text-sm text-[#c695bb] mb-1",
-                                                                        children: [
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "jsx-1bec3d89ad37a228",
-                                                                                children: "Progress"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                                lineNumber: 229,
-                                                                                columnNumber: 35
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "jsx-1bec3d89ad37a228",
-                                                                                children: [
-                                                                                    progress.toFixed(1),
-                                                                                    "%"
-                                                                                ]
-                                                                            }, void 0, true, {
-                                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                                lineNumber: 230,
-                                                                                columnNumber: 35
-                                                                            }, this)
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                        lineNumber: 228,
-                                                                        columnNumber: 33
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "jsx-1bec3d89ad37a228" + " " + "w-full bg-[#21121e] rounded-full h-2",
-                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            style: {
-                                                                                width: "".concat(progress, "%")
-                                                                            },
-                                                                            className: "jsx-1bec3d89ad37a228" + " " + "h-2 rounded-full transition-all duration-500 ".concat(getProgressColor(progress))
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                            lineNumber: 233,
-                                                                            columnNumber: 35
-                                                                        }, this)
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                        lineNumber: 232,
-                                                                        columnNumber: 33
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                lineNumber: 227,
-                                                                columnNumber: 31
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                        lineNumber: 198,
-                                                        columnNumber: 29
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "jsx-1bec3d89ad37a228" + " " + "flex gap-2 shrink-0",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                onClick: ()=>handleEditGoal(goal),
-                                                                className: "jsx-1bec3d89ad37a228" + " " + "flex items-center justify-center rounded-lg h-10 px-4 bg-[#321b2d] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-[#3d2245] border border-[#63365a] hover:border-[#9c167f] hover:scale-105",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "jsx-1bec3d89ad37a228" + " " + "material-symbols-outlined text-lg",
-                                                                        children: "edit"
-                                                                    }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
                                                                         lineNumber: 248,
-                                                                        columnNumber: 33
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "jsx-1bec3d89ad37a228",
-                                                                        children: "Edit"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                        lineNumber: 251,
                                                                         columnNumber: 33
                                                                     }, this)
                                                                 ]
@@ -1865,30 +1816,58 @@ function GoalPage() {
                                                                 lineNumber: 244,
                                                                 columnNumber: 31
                                                             }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                onClick: ()=>handleDeleteGoal(goal.id),
-                                                                className: "jsx-1bec3d89ad37a228" + " " + "flex items-center justify-center rounded-lg h-10 px-4 bg-red-500/20 text-red-400 gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-red-500/30 border border-red-500/30 hover:border-red-500 hover:scale-105",
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "jsx-53a858fead386cf" + " " + "mt-3",
                                                                 children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "jsx-1bec3d89ad37a228" + " " + "material-symbols-outlined text-lg",
-                                                                        children: "delete"
-                                                                    }, void 0, false, {
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "jsx-53a858fead386cf" + " " + "flex justify-between text-sm text-[#c695bb] mb-1",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                className: "jsx-53a858fead386cf",
+                                                                                children: "Progress"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                                lineNumber: 274,
+                                                                                columnNumber: 35
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                className: "jsx-53a858fead386cf",
+                                                                                children: [
+                                                                                    progress.toFixed(1),
+                                                                                    "%"
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                                lineNumber: 275,
+                                                                                columnNumber: 35
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
                                                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                        lineNumber: 257,
+                                                                        lineNumber: 273,
                                                                         columnNumber: 33
                                                                     }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "jsx-1bec3d89ad37a228",
-                                                                        children: "Delete"
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "jsx-53a858fead386cf" + " " + "w-full bg-[#21121e] rounded-full h-2",
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            style: {
+                                                                                width: "".concat(Math.max(progress, 0), "%")
+                                                                            },
+                                                                            className: "jsx-53a858fead386cf" + " " + "h-2 rounded-full transition-all duration-500 ".concat(getProgressColor(progress))
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                            lineNumber: 278,
+                                                                            columnNumber: 35
+                                                                        }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                        lineNumber: 260,
+                                                                        lineNumber: 277,
                                                                         columnNumber: 33
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                lineNumber: 253,
+                                                                lineNumber: 272,
                                                                 columnNumber: 31
                                                             }, this)
                                                         ]
@@ -1896,97 +1875,160 @@ function GoalPage() {
                                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
                                                         lineNumber: 243,
                                                         columnNumber: 29
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "jsx-53a858fead386cf" + " " + "flex gap-2 shrink-0",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>handleEditGoal(goal),
+                                                                disabled: updateMutation.isPending || deleteMutation.isPending,
+                                                                className: "jsx-53a858fead386cf" + " " + "flex items-center justify-center rounded-lg h-10 px-4 bg-[#321b2d] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-[#3d2245] border border-[#63365a] hover:border-[#9c167f] hover:scale-105 disabled:opacity-50",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "jsx-53a858fead386cf" + " " + "material-symbols-outlined text-lg",
+                                                                        children: "edit"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                        lineNumber: 299,
+                                                                        columnNumber: 33
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "jsx-53a858fead386cf",
+                                                                        children: "Edit"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                        lineNumber: 302,
+                                                                        columnNumber: 33
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                lineNumber: 291,
+                                                                columnNumber: 31
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>handleDeleteClick(goal),
+                                                                disabled: deleteMutation.isPending,
+                                                                className: "jsx-53a858fead386cf" + " " + "flex items-center justify-center rounded-lg h-10 px-4 bg-red-500/20 text-red-400 gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-red-500/30 border border-red-500/30 hover:border-red-500 hover:scale-105 disabled:opacity-50",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "jsx-53a858fead386cf" + " " + "material-symbols-outlined text-lg",
+                                                                        children: deleteMutation.isPending ? "hourglass_empty" : "delete"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                        lineNumber: 309,
+                                                                        columnNumber: 33
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "jsx-53a858fead386cf",
+                                                                        children: deleteMutation.isPending ? "Deleting..." : "Delete"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                        lineNumber: 314,
+                                                                        columnNumber: 33
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                                lineNumber: 304,
+                                                                columnNumber: 31
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                        lineNumber: 290,
+                                                        columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                lineNumber: 191,
+                                                lineNumber: 236,
                                                 columnNumber: 27
                                             }, this)
-                                        }, goal.id, false, {
+                                        }, goal.goal_id, false, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 186,
+                                            lineNumber: 227,
                                             columnNumber: 25
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 163,
+                                    lineNumber: 204,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                            lineNumber: 109,
+                            lineNumber: 150,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                        lineNumber: 108,
+                        lineNumber: 149,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                    lineNumber: 107,
+                    lineNumber: 148,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                lineNumber: 105,
+                lineNumber: 146,
                 columnNumber: 7
             }, this),
             isModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "jsx-1bec3d89ad37a228" + " " + "fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 animate-fade-in",
+                className: "jsx-53a858fead386cf" + " " + "fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     onClick: (e)=>e.stopPropagation(),
-                    className: "jsx-1bec3d89ad37a228" + " " + "bg-[#321b2d] rounded-xl border border-[#63365a] w-full max-w-md transform animate-scale-in",
+                    className: "jsx-53a858fead386cf" + " " + "bg-[#321b2d] border border-[#63365a] rounded-2xl p-6 mx-4 w-full max-w-md transform transition-all duration-500 ".concat(isModalOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"),
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "jsx-1bec3d89ad37a228" + " " + "flex items-center justify-between p-6 border-b border-[#63365a]",
+                            className: "jsx-53a858fead386cf" + " " + "flex items-center justify-between mb-6",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                    className: "jsx-1bec3d89ad37a228" + " " + "text-white text-xl font-bold",
+                                    className: "jsx-53a858fead386cf" + " " + "text-white text-xl font-bold",
                                     children: editingGoal ? "Edit Goal" : "Create New Goal"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 283,
+                                    lineNumber: 343,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setIsModalOpen(false),
-                                    className: "jsx-1bec3d89ad37a228" + " " + "text-[#c695bb] hover:text-white transition-colors duration-300 hover:scale-110",
+                                    className: "jsx-53a858fead386cf" + " " + "text-[#c695bb] hover:text-white transition-colors duration-200 p-1 rounded-lg hover:bg-white/10",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "jsx-1bec3d89ad37a228" + " " + "material-symbols-outlined",
+                                        className: "jsx-53a858fead386cf" + " " + "material-symbols-outlined text-2xl",
                                         children: "close"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                        lineNumber: 290,
+                                        lineNumber: 350,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 286,
+                                    lineNumber: 346,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                            lineNumber: 282,
+                            lineNumber: 342,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                             onSubmit: editingGoal ? handleUpdateGoal : handleCreateGoal,
-                            className: "jsx-1bec3d89ad37a228" + " " + "p-6 space-y-4",
+                            className: "jsx-53a858fead386cf" + " " + "space-y-4",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-1bec3d89ad37a228",
+                                    className: "jsx-53a858fead386cf",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "jsx-1bec3d89ad37a228" + " " + "text-white text-sm font-medium block mb-2",
+                                            className: "jsx-53a858fead386cf" + " " + "block text-[#c695bb] text-sm font-medium mb-2",
                                             children: "Goal Name"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 299,
+                                            lineNumber: 361,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1998,30 +2040,30 @@ function GoalPage() {
                                                     goal_name: e.target.value
                                                 }),
                                             placeholder: "e.g., Emergency Fund, Vacation",
-                                            className: "jsx-1bec3d89ad37a228" + " " + "w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white placeholder-[#c695bb] focus:border-[#9c167f] focus:outline-none transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
+                                            className: "jsx-53a858fead386cf" + " " + "w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-[#9c167f] transition-colors duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 302,
+                                            lineNumber: 364,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 298,
+                                    lineNumber: 360,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-1bec3d89ad37a228" + " " + "grid grid-cols-2 gap-4",
+                                    className: "jsx-53a858fead386cf" + " " + "grid grid-cols-2 gap-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "jsx-1bec3d89ad37a228",
+                                            className: "jsx-53a858fead386cf",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "text-white text-sm font-medium block mb-2",
+                                                    className: "jsx-53a858fead386cf" + " " + "block text-[#c695bb] text-sm font-medium mb-2",
                                                     children: "Target Amount"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 316,
+                                                    lineNumber: 378,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2035,27 +2077,27 @@ function GoalPage() {
                                                             target_amount: e.target.value
                                                         }),
                                                     placeholder: "0.00",
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white placeholder-[#c695bb] focus:border-[#9c167f] focus:outline-none transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
+                                                    className: "jsx-53a858fead386cf" + " " + "w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-[#9c167f] transition-colors duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 319,
+                                                    lineNumber: 381,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 315,
+                                            lineNumber: 377,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "jsx-1bec3d89ad37a228",
+                                            className: "jsx-53a858fead386cf",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "text-white text-sm font-medium block mb-2",
+                                                    className: "jsx-53a858fead386cf" + " " + "block text-[#c695bb] text-sm font-medium mb-2",
                                                     children: "Current Amount"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 337,
+                                                    lineNumber: 399,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2068,33 +2110,33 @@ function GoalPage() {
                                                             current_amount: e.target.value
                                                         }),
                                                     placeholder: "0.00",
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white placeholder-[#c695bb] focus:border-[#9c167f] focus:outline-none transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
+                                                    className: "jsx-53a858fead386cf" + " " + "w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-[#9c167f] transition-colors duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 340,
+                                                    lineNumber: 402,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 336,
+                                            lineNumber: 398,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 314,
+                                    lineNumber: 376,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-1bec3d89ad37a228",
+                                    className: "jsx-53a858fead386cf",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "jsx-1bec3d89ad37a228" + " " + "text-white text-sm font-medium block mb-2",
+                                            className: "jsx-53a858fead386cf" + " " + "block text-[#c695bb] text-sm font-medium mb-2",
                                             children: "Target Date"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 358,
+                                            lineNumber: 420,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2106,112 +2148,238 @@ function GoalPage() {
                                                     deadline: e.target.value
                                                 }),
                                             min: new Date().toISOString().split("T")[0],
-                                            className: "jsx-1bec3d89ad37a228" + " " + "w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:border-[#9c167f] focus:outline-none transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
+                                            className: "jsx-53a858fead386cf" + " " + "w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-[#9c167f] transition-colors duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 361,
+                                            lineNumber: 423,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 357,
+                                    lineNumber: 419,
                                     columnNumber: 15
                                 }, this),
+                                (createMutation.isError || updateMutation.isError) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "jsx-53a858fead386cf" + " " + "text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg p-3",
+                                    children: "Error saving goal. Please check your data and try again."
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                    lineNumber: 437,
+                                    columnNumber: 17
+                                }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-1bec3d89ad37a228" + " " + "flex gap-3 pt-4",
+                                    className: "jsx-53a858fead386cf" + " " + "flex gap-3 pt-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             type: "button",
                                             onClick: ()=>setIsModalOpen(false),
-                                            className: "jsx-1bec3d89ad37a228" + " " + "flex-1 bg-[#321b2d] border border-[#63365a] text-white rounded-lg py-2 px-4 hover:bg-[#3d2245] transition-all duration-300 hover:scale-105",
+                                            className: "jsx-53a858fead386cf" + " " + "flex-1 py-3 px-4 bg-transparent border border-[#63365a] text-[#c695bb] rounded-lg hover:bg-[#3d2245] hover:text-white transition-all duration-300 hover:scale-105",
                                             children: "Cancel"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 374,
+                                            lineNumber: 443,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             type: "submit",
-                                            disabled: ((_mutations_createGoal = mutations.createGoal) === null || _mutations_createGoal === void 0 ? void 0 : _mutations_createGoal.isPending) || ((_mutations_updateGoal = mutations.updateGoal) === null || _mutations_updateGoal === void 0 ? void 0 : _mutations_updateGoal.isPending),
-                                            className: "jsx-1bec3d89ad37a228" + " " + "group relative flex-1 bg-[#9c167f] text-white rounded-lg py-2 px-4 hover:bg-[#b51a97] transition-all duration-300 hover:scale-105 disabled:opacity-50 overflow-hidden",
+                                            disabled: createMutation.isPending || updateMutation.isPending,
+                                            className: "jsx-53a858fead386cf" + " " + "group relative flex-1 py-3 px-4 bg-[#9c167f] text-white rounded-lg hover:bg-[#b51a97] transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+                                                    className: "jsx-53a858fead386cf" + " " + "absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 389,
+                                                    lineNumber: 457,
                                                     columnNumber: 19
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "jsx-1bec3d89ad37a228" + " " + "relative z-10 flex items-center justify-center gap-2",
-                                                    children: ((_mutations_createGoal1 = mutations.createGoal) === null || _mutations_createGoal1 === void 0 ? void 0 : _mutations_createGoal1.isPending) || ((_mutations_updateGoal1 = mutations.updateGoal) === null || _mutations_updateGoal1 === void 0 ? void 0 : _mutations_updateGoal1.isPending) ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-1bec3d89ad37a228" + " " + "w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                                lineNumber: 394,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            editingGoal ? "Updating..." : "Creating..."
-                                                        ]
-                                                    }, void 0, true) : editingGoal ? "Update Goal" : "Create Goal"
+                                                createMutation.isPending || updateMutation.isPending ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "jsx-53a858fead386cf" + " " + "w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                            lineNumber: 460,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        editingGoal ? "Updating..." : "Creating..."
+                                                    ]
+                                                }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "jsx-53a858fead386cf" + " " + "relative z-10",
+                                                    children: editingGoal ? "Update Goal" : "Create Goal"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                                    lineNumber: 390,
-                                                    columnNumber: 19
+                                                    lineNumber: 464,
+                                                    columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                            lineNumber: 381,
+                                            lineNumber: 450,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                                    lineNumber: 373,
+                                    lineNumber: 442,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                            lineNumber: 294,
+                            lineNumber: 356,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                    lineNumber: 278,
+                    lineNumber: 336,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                lineNumber: 277,
+                lineNumber: 335,
+                columnNumber: 9
+            }, this),
+            isDeleteModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-53a858fead386cf" + " " + "fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    onClick: (e)=>e.stopPropagation(),
+                    className: "jsx-53a858fead386cf" + " " + "bg-[#321b2d] border border-[#63365a] rounded-2xl p-6 mx-4 w-full max-w-md transform transition-all duration-500 ".concat(isDeleteModalOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"),
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "jsx-53a858fead386cf" + " " + "flex items-center justify-between mb-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                    className: "jsx-53a858fead386cf" + " " + "text-white text-xl font-bold",
+                                    children: "Delete Goal"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                    lineNumber: 485,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setIsDeleteModalOpen(false),
+                                    className: "jsx-53a858fead386cf" + " " + "text-[#c695bb] hover:text-white transition-colors duration-200 p-1 rounded-lg hover:bg-white/10",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "jsx-53a858fead386cf" + " " + "material-symbols-outlined text-2xl",
+                                        children: "close"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                        lineNumber: 490,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                    lineNumber: 486,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                            lineNumber: 484,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "jsx-53a858fead386cf" + " " + "space-y-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "jsx-53a858fead386cf" + " " + "text-[#c695bb] text-sm",
+                                    children: [
+                                        'Are you sure you want to delete the goal "',
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "jsx-53a858fead386cf" + " " + "text-white font-medium",
+                                            children: deletingGoal === null || deletingGoal === void 0 ? void 0 : deletingGoal.goal_name
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                            lineNumber: 499,
+                                            columnNumber: 17
+                                        }, this),
+                                        '"? This action cannot be undone.'
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                    lineNumber: 497,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "jsx-53a858fead386cf" + " " + "flex gap-3 pt-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "button",
+                                            onClick: ()=>setIsDeleteModalOpen(false),
+                                            className: "jsx-53a858fead386cf" + " " + "flex-1 py-3 px-4 bg-transparent border border-[#63365a] text-[#c695bb] rounded-lg hover:bg-[#3d2245] hover:text-white transition-all duration-300 hover:scale-105",
+                                            children: "Cancel"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                            lineNumber: 506,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: handleDeleteConfirm,
+                                            disabled: deleteMutation.isPending,
+                                            className: "jsx-53a858fead386cf" + " " + "flex-1 py-3 px-4 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 border border-red-500/30 hover:border-red-500 transition-all duration-300 hover:scale-105 disabled:opacity-50 flex items-center justify-center gap-2",
+                                            children: deleteMutation.isPending ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "jsx-53a858fead386cf" + " " + "w-4 h-4 border-2 border-red-400 border-t-transparent rounded-full animate-spin"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                                        lineNumber: 520,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    "Deleting..."
+                                                ]
+                                            }, void 0, true) : "Delete Goal"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                            lineNumber: 513,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                                    lineNumber: 505,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                            lineNumber: 496,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                    lineNumber: 478,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/goal/page.js",
+                lineNumber: 477,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("link", {
                 href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined",
                 rel: "stylesheet",
-                className: "jsx-1bec3d89ad37a228"
+                className: "jsx-53a858fead386cf"
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-                lineNumber: 411,
+                lineNumber: 534,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                id: "1bec3d89ad37a228",
-                children: '@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes scaleIn{0%{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}@keyframes shake{0%,to{transform:translate(0)}25%{transform:translate(-5px)}75%{transform:translate(5px)}}@keyframes pulse-slow{0%,to{opacity:.1}50%{opacity:.2}}.animate-fade-in-up.jsx-1bec3d89ad37a228{opacity:0;animation:.6s ease-out forwards fadeInUp}.animate-fade-in.jsx-1bec3d89ad37a228{opacity:0;animation:.4s ease-out forwards fadeIn}.animate-scale-in.jsx-1bec3d89ad37a228{animation:.3s ease-out forwards scaleIn}.animate-shake.jsx-1bec3d89ad37a228{animation:.5s ease-in-out shake}.animate-pulse-slow.jsx-1bec3d89ad37a228{animation:3s ease-in-out infinite pulse-slow}.animation-delay-1000.jsx-1bec3d89ad37a228{animation-delay:1s}.material-symbols-outlined.jsx-1bec3d89ad37a228{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24}'
+                id: "53a858fead386cf",
+                children: '@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes pulse-slow{0%,to{opacity:.1}50%{opacity:.2}}.animate-fade-in-up.jsx-53a858fead386cf{opacity:0;animation:.6s ease-out forwards fadeInUp}.animate-fade-in.jsx-53a858fead386cf{opacity:0;animation:.4s ease-out forwards fadeIn}.animate-pulse-slow.jsx-53a858fead386cf{animation:3s ease-in-out infinite pulse-slow}.animation-delay-1000.jsx-53a858fead386cf{animation-delay:1s}.material-symbols-outlined.jsx-53a858fead386cf{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24}'
             }, void 0, false, void 0, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/pages/dashboard/goal/page.js",
-        lineNumber: 100,
+        lineNumber: 140,
         columnNumber: 5
     }, this);
 }
-_s(GoalPage, "8sXwplmGJgSAAv4DI1PC81GHwkI=", false, function() {
+_s(GoalPage, "HdWGWApnsesxfj+uY6KnQ5fF16M=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"],
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useGoal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGoal"]

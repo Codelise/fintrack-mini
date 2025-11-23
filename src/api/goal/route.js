@@ -32,14 +32,14 @@ export async function updateGoal(goalId, updates) {
   const { data, error } = await supabase
     .from("goals")
     .update(updates)
-    .eq("id", goalId)
+    .eq("goal_id", goalId)
     .select();
 
   return { data, error };
 }
 
 export async function deleteGoal(goalId) {
-  const { error } = await supabase.from("goals").delete().eq("id", goalId);
+  const { error } = await supabase.from("goals").delete().eq("goal_id", goalId);
 
   return { error };
 }

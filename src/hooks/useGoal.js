@@ -28,6 +28,9 @@ export const useGoal = () => {
         queryClient.invalidateQueries({ queryKey: goalKeys.lists() });
       }
     },
+    onError: (error) => {
+      console.error("Error creating goal:", error);
+    },
   });
 
   const createMultipleGoalsMutation = useMutation({
@@ -42,23 +45,23 @@ export const useGoal = () => {
   const updateGoalMutation = useMutation({
     mutationFn: ({ goalId, updates }) =>
       goalService.updateGoal(goalId, updates),
-    onSuccess: (result, variables) => {
+    onSuccess: (result) => {
       if (result.data) {
-        queryClient.setQueryData(goalKeys.lists(), (old) =>
-          old?.map((goal) =>
-            goal.id === variables.goalId ? result.data[0] : goal
-          )
-        );
+        queryClient.invalidateQueries({ queryKey: goalKeys.lists() });
       }
+    },
+    onError: (error) => {
+      console.error("Error updating goal:", error);
     },
   });
 
   const deleteGoalMutation = useMutation({
-    mutationFn: goalService.deleteGoal,
-    onSuccess: (result, variables) => {
-      queryClient.setQueryData(goalKeys.lists(), (old) =>
-        old?.filter((goal) => goal.id !== variables)
-      );
+    mutationFn: (goalId) => goalService.deleteGoal(goalId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: goalKeys.lists() });
+    },
+    onError: (error) => {
+      console.error("Error deleting goal: ", error);
     },
   });
 
@@ -78,12 +81,12 @@ export const useGoal = () => {
     return deleteGoalMutation.mutateAsync(goalId);
   };
 
-  const clearError = () => {
-    createGoalMutation.reset();
-    createMultipleGoalsMutation.reset();
-    updateGoalMutation.reset();
-    deleteGoalMutation.reset();
-  };
+  // const clearError = () => {
+  //   createGoalMutation.reset();
+  //   createMultipleGoalsMutation.reset();
+  //   updateGoalMutation.reset();
+  //   deleteGoalMutation.reset();
+  // };
 
   return {
     // Query methods
@@ -94,7 +97,7 @@ export const useGoal = () => {
     createMultipleGoals,
     updateGoal,
     deleteGoal,
-    clearError,
+    // clearError,
 
     // Mutation states
     mutations: {

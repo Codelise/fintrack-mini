@@ -1,16 +1,30 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useGoal } from "@/hooks/useGoal";
 import Navbar from "@/app/components/Navbar";
 
 export default function GoalPage() {
   const { user } = useAuth();
-  const { getGoals, createGoal, updateGoal, deleteGoal, mutations } = useGoal();
+  const {
+    getGoals,
+    createGoal,
+    updateGoal,
+    deleteGoal,
+    mutations: {
+      createGoal: createMutation,
+      updateGoal: updateMutation,
+      deleteGoal: deleteMutation,
+    },
+  } = useGoal();
+
   const { data: goalsData, isLoading, error } = getGoals(user?.id);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [editingGoal, setEditingGoal] = useState(null);
+  const [deletingGoal, setDeletingGoal] = useState(null);
+  const [mounted, setMounted] = useState(false);
 
   const [formData, setFormData] = useState({
     goal_name: "",
@@ -18,25 +32,34 @@ export default function GoalPage() {
     current_amount: "",
     deadline: "",
   });
+
   const goals = goalsData?.data || [];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleCreateGoal = async (e) => {
     e.preventDefault();
-    const result = await createGoal({
-      ...formData,
-      user_id: user.id,
-      target_amount: parseFloat(formData.target_amount),
-      current_amount: parseFloat(formData.current_amount) || 0,
-    });
-
-    if (result.data) {
-      setIsModalOpen(false);
-      setFormData({
-        goal_name: "",
-        target_amount: "",
-        current_amount: "",
-        deadline: "",
+    try {
+      const result = await createGoal({
+        ...formData,
+        user_id: user?.id,
+        target_amount: parseFloat(formData.target_amount),
+        current_amount: parseFloat(formData.current_amount) || 0,
       });
+
+      if (result.data) {
+        setIsModalOpen(false);
+        setFormData({
+          goal_name: "",
+          target_amount: "",
+          current_amount: "",
+          deadline: "",
+        });
+      }
+    } catch (error) {
+      console.error("Error creating goal:", error);
     }
   };
 
@@ -53,31 +76,48 @@ export default function GoalPage() {
 
   const handleUpdateGoal = async (e) => {
     e.preventDefault();
-    const result = await updateGoal(editingGoal.id, {
-      ...formData,
-      target_amount: parseFloat(formData.target_amount),
-      current_amount: parseFloat(formData.current_amount),
-    });
-
-    if (result.data) {
-      setIsModalOpen(false);
-      setEditingGoal(null);
-      setFormData({
-        goal_name: "",
-        target_amount: "",
-        current_amount: "",
-        deadline: "",
+    try {
+      const result = await updateGoal(editingGoal.goal_id, {
+        // FIXED: Use goal_id
+        ...formData,
+        target_amount: parseFloat(formData.target_amount),
+        current_amount: parseFloat(formData.current_amount),
       });
+
+      if (result.data) {
+        setIsModalOpen(false);
+        setEditingGoal(null);
+        setFormData({
+          goal_name: "",
+          target_amount: "",
+          current_amount: "",
+          deadline: "",
+        });
+      }
+    } catch (error) {
+      console.error("Error updating goal:", error);
     }
   };
 
-  const handleDeleteGoal = async (goalId) => {
-    if (confirm("Are you sure you want to delete this goal?")) {
-      await deleteGoal(goalId);
+  const handleDeleteClick = (goal) => {
+    setDeletingGoal(goal);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (deletingGoal) {
+      try {
+        await deleteGoal(deletingGoal.goal_id); // FIXED: Use goal_id
+        setIsDeleteModalOpen(false);
+        setDeletingGoal(null);
+      } catch (error) {
+        console.error("Error deleting goal:", error);
+      }
     }
   };
 
   const calculateProgress = (current, target) => {
+    if (!target || target === 0) return 0;
     return Math.min((current / target) * 100, 100);
   };
 
@@ -101,11 +141,12 @@ export default function GoalPage() {
       {/* Floating Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-[#9c167f]/10 rounded-full blur-xl animate-pulse-slow"></div>
       <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-[#9c167f]/5 rounded-full blur-lg animate-pulse-slow animation-delay-1000"></div>
+
       <Navbar />
       <div className="layout-container flex h-full grow flex-col z-10">
         {/* Main Content */}
         <div className="px-4 sm:px-8 md:px-12 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
-          <div className="layout-content-container flex flex-col w-full max-w-[960px] flex-1">
+          <div className="layout-content-container flex flex-col w-full  flex-1">
             <main className="flex-1 mt-6 md:mt-10">
               {/* Page Header */}
               <div className="flex flex-wrap justify-between gap-4 p-4 items-center animate-fade-in-up">
@@ -174,8 +215,8 @@ export default function GoalPage() {
                   ) : (
                     goals.map((goal, index) => {
                       const progress = calculateProgress(
-                        goal.current_amount,
-                        goal.target_amount
+                        goal.current_amount || 0,
+                        goal.target_amount || 1
                       );
                       const daysLeft = Math.ceil(
                         (new Date(goal.deadline) - new Date()) /
@@ -184,8 +225,12 @@ export default function GoalPage() {
 
                       return (
                         <div
-                          key={goal.id}
-                          className="group flex flex-col gap-4 bg-[#321b2d] p-6 justify-between rounded-xl border border-[#63365a] transition-all duration-300 hover:border-[#9c167f] hover:shadow-lg hover:shadow-[#9c167f]/20 animate-fade-in-up"
+                          key={goal.goal_id}
+                          className={`group flex flex-col gap-4 bg-[#321b2d] p-6 justify-between rounded-xl border border-[#63365a] transition-all duration-300 hover:border-[#9c167f] hover:shadow-lg hover:shadow-[#9c167f]/20 ${
+                            mounted
+                              ? "opacity-100 translate-y-0"
+                              : "opacity-0 translate-y-4"
+                          }`}
                           style={{ animationDelay: `${index * 100}ms` }}
                         >
                           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full">
@@ -234,7 +279,9 @@ export default function GoalPage() {
                                     className={`h-2 rounded-full transition-all duration-500 ${getProgressColor(
                                       progress
                                     )}`}
-                                    style={{ width: `${progress}%` }}
+                                    style={{
+                                      width: `${Math.max(progress, 0)}%`,
+                                    }}
                                   ></div>
                                 </div>
                               </div>
@@ -243,7 +290,11 @@ export default function GoalPage() {
                             <div className="flex gap-2 shrink-0">
                               <button
                                 onClick={() => handleEditGoal(goal)}
-                                className="flex items-center justify-center rounded-lg h-10 px-4 bg-[#321b2d] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-[#3d2245] border border-[#63365a] hover:border-[#9c167f] hover:scale-105"
+                                disabled={
+                                  updateMutation.isPending ||
+                                  deleteMutation.isPending
+                                }
+                                className="flex items-center justify-center rounded-lg h-10 px-4 bg-[#321b2d] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-[#3d2245] border border-[#63365a] hover:border-[#9c167f] hover:scale-105 disabled:opacity-50"
                               >
                                 <span className="material-symbols-outlined text-lg">
                                   edit
@@ -251,13 +302,20 @@ export default function GoalPage() {
                                 <span>Edit</span>
                               </button>
                               <button
-                                onClick={() => handleDeleteGoal(goal.id)}
-                                className="flex items-center justify-center rounded-lg h-10 px-4 bg-red-500/20 text-red-400 gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-red-500/30 border border-red-500/30 hover:border-red-500 hover:scale-105"
+                                onClick={() => handleDeleteClick(goal)}
+                                disabled={deleteMutation.isPending}
+                                className="flex items-center justify-center rounded-lg h-10 px-4 bg-red-500/20 text-red-400 gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-300 hover:bg-red-500/30 border border-red-500/30 hover:border-red-500 hover:scale-105 disabled:opacity-50"
                               >
                                 <span className="material-symbols-outlined text-lg">
-                                  delete
+                                  {deleteMutation.isPending
+                                    ? "hourglass_empty"
+                                    : "delete"}
                                 </span>
-                                <span>Delete</span>
+                                <span>
+                                  {deleteMutation.isPending
+                                    ? "Deleting..."
+                                    : "Delete"}
+                                </span>
                               </button>
                             </div>
                           </div>
@@ -274,29 +332,33 @@ export default function GoalPage() {
 
       {/* Add/Edit Goal Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
           <div
-            className="bg-[#321b2d] rounded-xl border border-[#63365a] w-full max-w-md transform animate-scale-in"
+            className={`bg-[#321b2d] border border-[#63365a] rounded-2xl p-6 mx-4 w-full max-w-md transform transition-all duration-500 ${
+              isModalOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-6 border-b border-[#63365a]">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-white text-xl font-bold">
                 {editingGoal ? "Edit Goal" : "Create New Goal"}
               </h2>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-[#c695bb] hover:text-white transition-colors duration-300 hover:scale-110"
+                className="text-[#c695bb] hover:text-white transition-colors duration-200 p-1 rounded-lg hover:bg-white/10"
               >
-                <span className="material-symbols-outlined">close</span>
+                <span className="material-symbols-outlined text-2xl">
+                  close
+                </span>
               </button>
             </div>
 
             <form
               onSubmit={editingGoal ? handleUpdateGoal : handleCreateGoal}
-              className="p-6 space-y-4"
+              className="space-y-4"
             >
               <div>
-                <label className="text-white text-sm font-medium block mb-2">
+                <label className="block text-[#c695bb] text-sm font-medium mb-2">
                   Goal Name
                 </label>
                 <input
@@ -306,14 +368,14 @@ export default function GoalPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, goal_name: e.target.value })
                   }
-                  className="w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white placeholder-[#c695bb] focus:border-[#9c167f] focus:outline-none transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
+                  className="w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-[#9c167f] transition-colors duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
                   placeholder="e.g., Emergency Fund, Vacation"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-white text-sm font-medium block mb-2">
+                  <label className="block text-[#c695bb] text-sm font-medium mb-2">
                     Target Amount
                   </label>
                   <input
@@ -328,13 +390,13 @@ export default function GoalPage() {
                         target_amount: e.target.value,
                       })
                     }
-                    className="w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white placeholder-[#c695bb] focus:border-[#9c167f] focus:outline-none transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
+                    className="w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-[#9c167f] transition-colors duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
                     placeholder="0.00"
                   />
                 </div>
 
                 <div>
-                  <label className="text-white text-sm font-medium block mb-2">
+                  <label className="block text-[#c695bb] text-sm font-medium mb-2">
                     Current Amount
                   </label>
                   <input
@@ -348,14 +410,14 @@ export default function GoalPage() {
                         current_amount: e.target.value,
                       })
                     }
-                    className="w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white placeholder-[#c695bb] focus:border-[#9c167f] focus:outline-none transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
+                    className="w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-[#9c167f] transition-colors duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
                     placeholder="0.00"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-white text-sm font-medium block mb-2">
+                <label className="block text-[#c695bb] text-sm font-medium mb-2">
                   Target Date
                 </label>
                 <input
@@ -366,43 +428,104 @@ export default function GoalPage() {
                     setFormData({ ...formData, deadline: e.target.value })
                   }
                   min={new Date().toISOString().split("T")[0]}
-                  className="w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:border-[#9c167f] focus:outline-none transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
+                  className="w-full bg-[#21121e] border border-[#63365a] rounded-lg px-3 py-2 text-white focus:outline-none focus:border-[#9c167f] transition-colors duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c167f]/20"
                 />
               </div>
+
+              {/* Error Messages */}
+              {(createMutation.isError || updateMutation.isError) && (
+                <div className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg p-3">
+                  Error saving goal. Please check your data and try again.
+                </div>
+              )}
 
               <div className="flex gap-3 pt-4">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 bg-[#321b2d] border border-[#63365a] text-white rounded-lg py-2 px-4 hover:bg-[#3d2245] transition-all duration-300 hover:scale-105"
+                  className="flex-1 py-3 px-4 bg-transparent border border-[#63365a] text-[#c695bb] rounded-lg hover:bg-[#3d2245] hover:text-white transition-all duration-300 hover:scale-105"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={
-                    mutations.createGoal?.isPending ||
-                    mutations.updateGoal?.isPending
+                    createMutation.isPending || updateMutation.isPending
                   }
-                  className="group relative flex-1 bg-[#9c167f] text-white rounded-lg py-2 px-4 hover:bg-[#b51a97] transition-all duration-300 hover:scale-105 disabled:opacity-50 overflow-hidden"
+                  className="group relative flex-1 py-3 px-4 bg-[#9c167f] text-white rounded-lg hover:bg-[#b51a97] transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    {mutations.createGoal?.isPending ||
-                    mutations.updateGoal?.isPending ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        {editingGoal ? "Updating..." : "Creating..."}
-                      </>
-                    ) : editingGoal ? (
-                      "Update Goal"
-                    ) : (
-                      "Create Goal"
-                    )}
-                  </span>
+                  {createMutation.isPending || updateMutation.isPending ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      {editingGoal ? "Updating..." : "Creating..."}
+                    </>
+                  ) : (
+                    <span className="relative z-10">
+                      {editingGoal ? "Update Goal" : "Create Goal"}
+                    </span>
+                  )}
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div
+            className={`bg-[#321b2d] border border-[#63365a] rounded-2xl p-6 mx-4 w-full max-w-md transform transition-all duration-500 ${
+              isDeleteModalOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-white text-xl font-bold">Delete Goal</h2>
+              <button
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="text-[#c695bb] hover:text-white transition-colors duration-200 p-1 rounded-lg hover:bg-white/10"
+              >
+                <span className="material-symbols-outlined text-2xl">
+                  close
+                </span>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <p className="text-[#c695bb] text-sm">
+                Are you sure you want to delete the goal "
+                <span className="text-white font-medium">
+                  {deletingGoal?.goal_name}
+                </span>
+                "? This action cannot be undone.
+              </p>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setIsDeleteModalOpen(false)}
+                  className="flex-1 py-3 px-4 bg-transparent border border-[#63365a] text-[#c695bb] rounded-lg hover:bg-[#3d2245] hover:text-white transition-all duration-300 hover:scale-105"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleDeleteConfirm}
+                  disabled={deleteMutation.isPending}
+                  className="flex-1 py-3 px-4 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 border border-red-500/30 hover:border-red-500 transition-all duration-300 hover:scale-105 disabled:opacity-50 flex items-center justify-center gap-2"
+                >
+                  {deleteMutation.isPending ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-red-400 border-t-transparent rounded-full animate-spin"></div>
+                      Deleting...
+                    </>
+                  ) : (
+                    "Delete Goal"
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -435,30 +558,6 @@ export default function GoalPage() {
           }
         }
 
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        @keyframes shake {
-          0%,
-          100% {
-            transform: translateX(0);
-          }
-          25% {
-            transform: translateX(-5px);
-          }
-          75% {
-            transform: translateX(5px);
-          }
-        }
-
         @keyframes pulse-slow {
           0%,
           100% {
@@ -477,14 +576,6 @@ export default function GoalPage() {
         .animate-fade-in {
           animation: fadeIn 0.4s ease-out forwards;
           opacity: 0;
-        }
-
-        .animate-scale-in {
-          animation: scaleIn 0.3s ease-out forwards;
-        }
-
-        .animate-shake {
-          animation: shake 0.5s ease-in-out;
         }
 
         .animate-pulse-slow {
