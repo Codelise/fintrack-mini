@@ -87,3 +87,5 @@ Nov 23:
 - modified Goal page = implement the changes from useGoal hook and Implemented modal
 - modified api/goals/route.js = changed id to goal_id
 - added budget_id and goal_id to transactions table so users can select what transactions to choose
+
+TO BE IMPLEMENTED: transactions
