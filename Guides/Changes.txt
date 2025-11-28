@@ -88,4 +88,14 @@ Nov 23:
 - modified api/goals/route.js = changed id to goal_id
 - added budget_id and goal_id to transactions table so users can select what transactions to choose
 
+Nov 28:
+- npm install --save-dev @svgr/webpack = for svg icons (no need)
+- modified Dashboard Navbar to be fixed, new background, icons, text sizes
+- modified dashboard, budget, goal = added margin top = 10 for navbar
+
+Activtiy 7
+
+
+
 TO BE IMPLEMENTED: transactions
+

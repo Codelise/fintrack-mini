@@ -229,7 +229,7 @@ export default function BudgetPage() {
         <Navbar />
 
         {/* Main Content */}
-        <div className="px-3 sm:px-6 md:px-8 lg:px-12 xl:px-20 2xl:px-40 flex flex-1 justify-center py-4 sm:py-5">
+        <div className="mt-10 px-3 sm:px-6 md:px-8 lg:px-12 xl:px-20 2xl:px-40 flex flex-1 justify-center py-4 sm:py-5">
           <div className="layout-content-container flex flex-col w-full  flex-1">
             <main className="flex-1 mt-4 sm:mt-6 md:mt-8 lg:mt-10">
               {/* Page Header with Animation */}
