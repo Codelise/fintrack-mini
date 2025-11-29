@@ -915,7 +915,7 @@ function Navbar() {
             sessionStorage.removeItem("supabase.auth.token");
             localStorage.removeItem("supabase.auth.token");
             setShowLogoutModal(false);
-            router.push("/");
+            router.push("/pages/login");
         } catch (error) {
             console.error("Logout failed:", error);
         }

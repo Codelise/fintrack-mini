@@ -61,7 +61,7 @@ function Navbar() {
             sessionStorage.removeItem("supabase.auth.token");
             localStorage.removeItem("supabase.auth.token");
             setShowLogoutModal(false);
-            router.push("/");
+            router.push("/pages/login");
         } catch (error) {
             console.error("Logout failed:", error);
         }
@@ -72,7 +72,7 @@ function Navbar() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
-                className: "w-full flex items-center z-1000 bg-[#382935] fixed justify-between whitespace-nowrap border-b border-solid border-b-darkBorder px-4 py-3 sm:px-6 md:px-10",
+                className: "w-full flex items-center z-1000 bg-[#382935] fixed justify-between whitespace-nowrap  border-solid  px-4 py-3 sm:px-6 md:px-10",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex items-center  gap-4 text-white",

@@ -32,7 +32,7 @@ export default function LandingPage() {
                       money effectively today.
                     </h2>
                   </div>
-                  <Link href="/pages/login">
+                  <Link href="/pages/signup">
                     <button className="group flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] relative transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#9c167f]/40 animate-pulse-slow">
                       <span className="truncate z-10 relative">
                         Get Started

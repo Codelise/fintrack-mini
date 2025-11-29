@@ -14,6 +14,9 @@ export default function SignUp() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const { signUp, loading, error, clearError } = useAuth();
   const router = useRouter();
 
@@ -22,7 +25,10 @@ export default function SignUp() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    if (error) clearError();
+    if (error) {
+      clearError();
+      setShowErrorModal(false);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -40,13 +46,180 @@ export default function SignUp() {
 
     if (result.success) {
       if (result.profileCreated === false) {
-        alert("Account created successfully! You can now login");
-        setTimeout(() => router.push("./login"), 3000);
+        setSuccessMessage("Account created successfully! You can now login");
+        setShowSuccessModal(true);
+        setTimeout(() => {
+          setShowSuccessModal(false);
+          router.push("./login");
+        }, 3000);
       } else {
-        alert("Account created successfully! You can now login");
-        router.push("./login");
+        setSuccessMessage("Account created successfully! You can now login");
+        setShowSuccessModal(true);
+        setTimeout(() => {
+          setShowSuccessModal(false);
+          router.push("./login");
+        }, 2000);
       }
+    } else {
+      setShowErrorModal(true);
     }
+  };
+
+  const closeErrorModal = () => {
+    setShowErrorModal(false);
+    clearError();
+  };
+
+  const closeSuccessModal = () => {
+    setShowSuccessModal(false);
+    router.push("./login");
+  };
+
+  // Error Modal Component
+  const ErrorModal = () => {
+    if (!showErrorModal || !error) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div
+          className="bg-[#261c23] rounded-xl w-full max-w-md border border-[#523d4c] shadow-2xl transform transition-all duration-300 scale-95 hover:scale-100"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-[#FFEAD8] text-xl font-bold">
+                Sign Up Error
+              </h2>
+              <button
+                onClick={closeErrorModal}
+                className="text-[#b79eb0] hover:text-[#e5a5d1] transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-red-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-[#FFEAD8] font-semibold">
+                      Unable to Create Account
+                    </h3>
+                    <p className="text-[#FFEAD8]/70 text-sm mt-1">{error}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  onClick={closeErrorModal}
+                  className="flex-1 bg-white/10 hover:bg-white/20 text-[#FFEAD8] py-3 rounded-lg font-medium transition-colors border border-[#523d4c] hover:border-[#63365a]"
+                >
+                  Try Again
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Success Modal Component
+  const SuccessModal = () => {
+    if (!showSuccessModal) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div
+          className="bg-[#261c23] rounded-xl w-full max-w-md border border-[#523d4c] shadow-2xl transform transition-all duration-300 scale-95 hover:scale-100"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-[#FFEAD8] text-xl font-bold">Success!</h2>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-green-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-[#FFEAD8] font-semibold">
+                      Account Created
+                    </h3>
+                    <p className="text-[#FFEAD8]/70 text-sm mt-1">
+                      {successMessage}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center pt-4">
+                <div className="flex items-center gap-2 text-[#b79eb0]">
+                  <div className="w-4 h-4 border-2 border-[#9c1676] border-t-transparent rounded-full animate-spin"></div>
+                  <span className="text-sm">Redirecting to login...</span>
+                </div>
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  onClick={closeSuccessModal}
+                  className="flex-1 bg-[#9c1676] hover:bg-[#9c1676]/90 text-white py-3 rounded-lg font-medium transition-colors"
+                >
+                  Go to Login Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -63,12 +236,6 @@ export default function SignUp() {
             </h2>
 
             <form onSubmit={handleSubmit}>
-              {error && (
-                <div className="bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded animate-shake mb-4">
-                  {error}
-                </div>
-              )}
-
               <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-200">
                 <label
                   htmlFor="firstName"
@@ -267,6 +434,10 @@ export default function SignUp() {
         </div>
       </div>
 
+      {/* Modals */}
+      <ErrorModal />
+      <SuccessModal />
+
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -288,19 +459,6 @@ export default function SignUp() {
           }
         }
 
-        @keyframes shake {
-          0%,
-          100% {
-            transform: translateX(0);
-          }
-          25% {
-            transform: translateX(-5px);
-          }
-          75% {
-            transform: translateX(5px);
-          }
-        }
-
         @keyframes pulse-slow {
           0%,
           100% {
@@ -319,10 +477,6 @@ export default function SignUp() {
         .animate-fade-in {
           animation: fadeIn 0.4s ease-out forwards;
           opacity: 0;
-        }
-
-        .animate-shake {
-          animation: shake 0.5s ease-in-out;
         }
 
         .animate-pulse-slow {

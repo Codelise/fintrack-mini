@@ -26,3 +26,66 @@ export async function createTransaction(transactionData) {
 
   return { data, error };
 }
+
+export async function updateTransaction(transactionId, updates) {
+  const { data, error } = await supabase
+    .from("transactions")
+    .update(updates)
+    .eq("transaction_id", transactionId)
+    .select();
+
+  return { data, error };
+}
+
+export async function deleteTransaction(transactionId) {
+  const { data, error } = await supabase
+    .from("transactions")
+    .delete()
+    .eq("transaction_id", transactionId);
+
+  return { data, error };
+}
+
+export async function getTransactionById(transactionId) {
+  const { data, error } = await supabase
+    .from("transactions")
+    .select(`*, categories (*)`)
+    .eq("transaction_id", transactionId)
+    .single();
+
+  return { data, error };
+}
+
+export async function getTransactionsByWallet(userId, walletId) {
+  const { data, error } = await supabase
+    .from("transactions")
+    .select(`*, categories (*)`)
+    .eq("user_id", userId)
+    .eq("wallet_id", walletId)
+    .order("date", { ascending: false });
+
+  return { data, error };
+}
+
+export async function getTransactionsByCategory(userId, categoryId) {
+  const { data, error } = await supabase
+    .from("transactions")
+    .select(`*, categories (*)`)
+    .eq("user_id", userId)
+    .eq("category_id", categoryId)
+    .order("date", { ascending: false });
+
+  return { data, error };
+}
+
+export async function getTransactionsByDateRange(userId, startDate, endDate) {
+  const { data, error } = await supabase
+    .from("transactions")
+    .select(`*, categories (*)`)
+    .eq("user_id", userId)
+    .gte("date", startDate)
+    .lte("date", endDate)
+    .order("date", { ascending: false });
+
+  return { data, error };
+}

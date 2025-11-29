@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/champorado/Desktop/FinTrack-IT-Elective-2/src/context/userContext.js"],"sourcesContent":["\"use client\";\nimport { createContext, useContext, useState } from \"react\";\n\nconst UserContext = createContext();\n\nexport function UserProvider({ children }) {\n  const [user, setUser] = useState(null);\n  const [isOnboarded, setIsOnboarded] = useState(false);\n\n  return (\n    <UserContext.Provider\n      value={{\n        user,\n        setUser,\n        isOnboarded,\n        setIsOnboarded,\n      }}\n    >\n      {children}\n    </UserContext.Provider>\n  );\n}\n\nexport const useUser = () => {\n  const context = useContext(UserContext);\n  if (!context) {\n    throw new Error(\"useUser must be used within a UserProvider\");\n  }\n  return context;\n};\n"],"names":[],"mappings":";;;;;;;AACA;;;AADA;;AAGA,MAAM,4BAAc,IAAA,8KAAa;AAE1B,SAAS,aAAa,KAAY;QAAZ,EAAE,QAAQ,EAAE,GAAZ;;IAC3B,MAAM,CAAC,MAAM,QAAQ,GAAG,IAAA,yKAAQ,EAAC;IACjC,MAAM,CAAC,aAAa,eAAe,GAAG,IAAA,yKAAQ,EAAC;IAE/C,qBACE,6LAAC,YAAY,QAAQ;QACnB,OAAO;YACL;YACA;YACA;YACA;QACF;kBAEC;;;;;;AAGP;GAhBgB;KAAA;AAkBT,MAAM,UAAU;;IACrB,MAAM,UAAU,IAAA,2KAAU,EAAC;IAC3B,IAAI,CAAC,SAAS;QACZ,MAAM,IAAI,MAAM;IAClB;IACA,OAAO;AACT;IANa","debugId":null}}]
+}

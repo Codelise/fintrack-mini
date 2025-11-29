@@ -125,6 +125,8 @@ __turbopack_context__.s([
     ()=>authService
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$auth$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/api/auth/route.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-client] (ecmascript)");
+;
 ;
 class AuthService {
     async signUp(userData) {
@@ -145,11 +147,14 @@ class AuthService {
         return result;
     }
     async signIn(credentials) {
-        if (!credentials.email || !credentials.password) {
-            throw new Error("Email and password are required");
-        }
-        const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$auth$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["signIn"])(credentials.email, credentials.password);
-        return result;
+        const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signInWithPassword({
+            email: credentials.email,
+            password: credentials.password
+        });
+        return {
+            data,
+            error
+        };
     }
     async signOut() {
         return await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$auth$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["signOut"])();

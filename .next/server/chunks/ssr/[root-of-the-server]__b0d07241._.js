@@ -555,14 +555,14 @@ async function createMultipleBudgets(budgetsArray) {
     };
 }
 async function updateBudget(budgetId, updates) {
-    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("budgets").update(updates).eq("id", budgetId).select();
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("budgets").update(updates).eq("budget_id", budgetId).select();
     return {
         data,
         error
     };
 }
 async function deleteBudget(budgetId) {
-    const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("budgets").delete().eq("id", budgetId);
+    const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("budgets").delete().eq("budget_id", budgetId);
     return {
         error
     };
@@ -594,7 +594,6 @@ class BudgetService {
     }
     async createBudget(budgetData) {
         try {
-            // Update validation to only require budget_name, not category
             if (!budgetData.user_id || !budgetData.budget_name || !budgetData.amount) {
                 throw new Error("User ID, budget_name, and amount are required");
             }
@@ -613,7 +612,6 @@ class BudgetService {
     }
     async createMultipleBudgets(budgetsArray) {
         try {
-            // Update validation to only require budget_name, not category
             for (const budget of budgetsArray){
                 if (!budget.user_id || !budget.budget_name || !budget.amount) {
                     throw new Error("All budgets must have user_id, budget_name, and amount");
@@ -634,14 +632,20 @@ class BudgetService {
     }
     async updateBudget(budgetId, updates) {
         try {
+            console.log("Service: Updating budget", budgetId, updates);
+            if (!budgetId) {
+                throw new Error("Budget ID is required");
+            }
             const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$budget$2f$route$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["updateBudget"])(budgetId, updates);
+            console.log("Service: Update result", result);
+            if (result.error) {
+                console.error("Service: Update failed:", result.error);
+                throw result.error;
+            }
             return result;
         } catch (error) {
-            console.error("Error updating budget:", error);
-            return {
-                data: null,
-                error
-            };
+            console.error("Service: Error updating budget:", error);
+            throw error;
         }
     }
     async deleteBudget(budgetId) {

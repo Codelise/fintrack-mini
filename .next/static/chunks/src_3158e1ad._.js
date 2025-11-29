@@ -1,0 +1,3794 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/src/app/components/Navbar.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>Navbar
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+;
+function Navbar() {
+    _s();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const [isMenuOpen, setIsMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showLogoutModal, setShowLogoutModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const handleLogout = async ()=>{
+        try {
+            const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
+            if (error) {
+                alert("Logout error:", error);
+                return;
+            }
+            sessionStorage.removeItem("fintrack_visited");
+            sessionStorage.removeItem("supabase.auth.token");
+            localStorage.removeItem("supabase.auth.token");
+            setShowLogoutModal(false);
+            router.push("/");
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    };
+    const toggleMenu = ()=>{
+        setIsMenuOpen(!isMenuOpen);
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
+                className: "w-full flex items-center z-1000 bg-[#382935] fixed justify-between whitespace-nowrap  border-solid  px-4 py-3 sm:px-6 md:px-10",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center  gap-4 text-white",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-auto flex items-center",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    src: "/no background/whitelogo.svg",
+                                    alt: "FinTrack",
+                                    width: 40,
+                                    height: 40
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 42,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/components/Navbar.js",
+                                lineNumber: 41,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "text-white text-xl font-bold leading-tight tracking-[-0.015em] md:text-xl",
+                                children: "FinTrack"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/components/Navbar.js",
+                                lineNumber: 49,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/components/Navbar.js",
+                        lineNumber: 40,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "hidden md:flex flex-1 justify-end gap-8",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
+                            className: "flex items-center gap-9",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                    href: "/pages/dashboard",
+                                    children: "Dashboard"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 56,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                    href: "/pages/dashboard/transactions",
+                                    children: "Transactions"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 62,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                    href: "/pages/dashboard/budget",
+                                    children: "Budget"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 68,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                    href: "/pages/dashboard/goal",
+                                    children: "Goal"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 74,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                    href: "/pages/dashboard/wallet",
+                                    children: "Wallet"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 80,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setShowLogoutModal(true),
+                                    className: "flex min-w-[84px] cursor-pointer items-center justify-center outline-0 rounded-lg h-10 px-4 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-[#8a156f]",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "truncate",
+                                        children: "Logout"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/components/Navbar.js",
+                                        lineNumber: 90,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 86,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/components/Navbar.js",
+                            lineNumber: 55,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/components/Navbar.js",
+                        lineNumber: 54,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "md:hidden",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            onClick: toggleMenu,
+                            className: "text-white p-2 rounded-lg hover:bg-[#382935] transition-colors",
+                            "aria-label": "Toggle menu",
+                            children: isMenuOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                width: "24",
+                                height: "24",
+                                viewBox: "0 0 24 24",
+                                fill: "none",
+                                stroke: "currentColor",
+                                strokeWidth: "2",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                        d: "M18 6 6 18"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/components/Navbar.js",
+                                        lineNumber: 113,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                        d: "m6 6 12 12"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/components/Navbar.js",
+                                        lineNumber: 114,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/components/Navbar.js",
+                                lineNumber: 102,
+                                columnNumber: 15
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                width: "24",
+                                height: "24",
+                                viewBox: "0 0 24 24",
+                                fill: "none",
+                                stroke: "currentColor",
+                                strokeWidth: "2",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                        x1: "4",
+                                        x2: "20",
+                                        y1: "12",
+                                        y2: "12"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/components/Navbar.js",
+                                        lineNumber: 128,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                        x1: "4",
+                                        x2: "20",
+                                        y1: "6",
+                                        y2: "6"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/components/Navbar.js",
+                                        lineNumber: 129,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                        x1: "4",
+                                        x2: "20",
+                                        y1: "18",
+                                        y2: "18"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/components/Navbar.js",
+                                        lineNumber: 130,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/components/Navbar.js",
+                                lineNumber: 117,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/components/Navbar.js",
+                            lineNumber: 96,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/components/Navbar.js",
+                        lineNumber: 95,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/components/Navbar.js",
+                lineNumber: 39,
+                columnNumber: 7
+            }, this),
+            isMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "md:hidden fixed inset-0 bg-black/50 z-40",
+                        onClick: ()=>setIsMenuOpen(false)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/components/Navbar.js",
+                        lineNumber: 139,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "md:hidden fixed top-0 right-0 h-full w-1/2 max-w-xs bg-[#382935] border-l border-[#523d4c] z-50 shadow-lg",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "p-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex justify-end mb-6",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setIsMenuOpen(false),
+                                        className: "text-white p-2 rounded-lg hover:bg-[#382935] transition-colors",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            width: "20",
+                                            height: "20",
+                                            viewBox: "0 0 24 24",
+                                            fill: "none",
+                                            stroke: "currentColor",
+                                            strokeWidth: "2",
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    d: "M18 6 6 18"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/components/Navbar.js",
+                                                    lineNumber: 162,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    d: "m6 6 12 12"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/components/Navbar.js",
+                                                    lineNumber: 163,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 151,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/components/Navbar.js",
+                                        lineNumber: 147,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 146,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
+                                    className: "flex flex-col space-y-6",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard",
+                                            children: "Dashboard"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 169,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard/transactions",
+                                            children: "Transactions"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 175,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard/reports",
+                                            children: "Reports"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 181,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard/budget",
+                                            children: "Budget"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 187,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            className: "text-white text-lg font-medium leading-normal hover:text-lightText transition-colors",
+                                            href: "/pages/dashboard/goal",
+                                            children: "Goal"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 193,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>{
+                                                setIsMenuOpen(false);
+                                                setShowLogoutModal(true);
+                                            },
+                                            className: "flex w-full cursor-pointer items-center justify-center outline-0 rounded-lg h-12 bg-[#9c167f] text-white text-lg font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-[#8a156f] mt-4",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: "Logout"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/components/Navbar.js",
+                                                lineNumber: 206,
+                                                columnNumber: 19
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/components/Navbar.js",
+                                            lineNumber: 199,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 168,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/components/Navbar.js",
+                            lineNumber: 145,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/components/Navbar.js",
+                        lineNumber: 144,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true),
+            showLogoutModal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "bg-[#261c23] rounded-lg p-6 max-w-md w-full border border-[#523d4c]",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "text-center mb-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mx-auto w-12 h-12 mb-4 text-white",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        width: "24",
+                                        height: "24",
+                                        viewBox: "0 0 24 24",
+                                        fill: "none",
+                                        stroke: "currentColor",
+                                        strokeWidth: "2",
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/components/Navbar.js",
+                                                lineNumber: 230,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
+                                                points: "16,17 21,12 16,7"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/components/Navbar.js",
+                                                lineNumber: 231,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                                x1: "21",
+                                                y1: "12",
+                                                x2: "9",
+                                                y2: "12"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/components/Navbar.js",
+                                                lineNumber: 232,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/components/Navbar.js",
+                                        lineNumber: 219,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 218,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                    className: "text-white text-xl font-bold mb-2",
+                                    children: "Confirm Logout"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 235,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-[#b79eb0]",
+                                    children: "Are you sure you want to log out?"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 238,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/components/Navbar.js",
+                            lineNumber: 217,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex gap-3",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: handleLogout,
+                                    className: "flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#9c167f] text-white text-lg font-bold leading-normal tracking-[0.015em] hover:bg-[#8a156f] transition-colors",
+                                    children: "Yes, Logout"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 244,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setShowLogoutModal(false),
+                                    className: "flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#382935] text-white text-lg font-bold leading-normal tracking-[0.015em] hover:bg-[#2d212a] transition-colors",
+                                    children: "Cancel"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/components/Navbar.js",
+                                    lineNumber: 250,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/components/Navbar.js",
+                            lineNumber: 243,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/components/Navbar.js",
+                    lineNumber: 216,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/components/Navbar.js",
+                lineNumber: 215,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true);
+}
+_s(Navbar, "qLsL/TRxzSO0B7PRoQ02xyM/6tY=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
+    ];
+});
+_c = Navbar;
+var _c;
+__turbopack_context__.k.register(_c, "Navbar");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/api/wallet/route.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "createWallet",
+    ()=>createWallet,
+    "deleteWallet",
+    ()=>deleteWallet,
+    "getUserWallets",
+    ()=>getUserWallets,
+    "getWalletById",
+    ()=>getWalletById,
+    "updateWallet",
+    ()=>updateWallet
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-client] (ecmascript)");
+;
+async function getUserWallets(userId) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("wallets").select("*").eq("user_id", userId).order("created_at", {
+        ascending: false
+    });
+    return {
+        data,
+        error
+    };
+}
+async function createWallet(walletData) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("wallets").insert([
+        walletData
+    ]).select();
+    return {
+        data,
+        error
+    };
+}
+async function updateWallet(walletId, updates) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("wallets").update(updates).eq("wallet_id", walletId).select();
+    return {
+        data,
+        error
+    };
+}
+async function deleteWallet(walletId) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("wallets").delete().eq("wallet_id", walletId);
+    return {
+        data,
+        error
+    };
+}
+async function getWalletById(walletId) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("wallets").select("*").eq("wallet_id", walletId).single();
+    return {
+        data,
+        error
+    };
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/services/wallet-service.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "WalletService",
+    ()=>WalletService,
+    "walletService",
+    ()=>walletService
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$wallet$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/api/wallet/route.js [app-client] (ecmascript)");
+;
+class WalletService {
+    async getWallets(userId) {
+        try {
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$wallet$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getUserWallets"])(userId);
+            return result;
+        } catch (error) {
+            console.error("Error fetching wallets:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+    async createWallet(walletData) {
+        try {
+            if (!walletData.user_id || !walletData.wallet_name) {
+                throw new Error("User ID and wallet name are required");
+            }
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$wallet$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createWallet"])(walletData);
+            return result;
+        } catch (error) {
+            console.error("Error creating wallet:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+    async createDefaultWallet(userId) {
+        try {
+            const defaultWalletData = {
+                user_id: userId,
+                wallet_name: "Main Wallet",
+                balance: 0,
+                currency: "PHP"
+            };
+            const result = await this.createWallet(defaultWalletData);
+            return result;
+        } catch (error) {
+            console.error("Error creating default wallet:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+    async updateWallet(walletId, updates) {
+        try {
+            if (!walletId) {
+                throw new Error("Wallet ID is required");
+            }
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$wallet$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateWallet"])(walletId, updates);
+            return result;
+        } catch (error) {
+            console.error("Error updating wallet:", error);
+            throw error;
+        }
+    }
+    async deleteWallet(walletId) {
+        try {
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$wallet$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["deleteWallet"])(walletId);
+            return result;
+        } catch (error) {
+            console.error("Error deleting wallet:", error);
+            return {
+                error
+            };
+        }
+    }
+}
+const walletService = new WalletService();
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/hooks/useWallets.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useWallets",
+    ()=>useWallets,
+    "walletKeys",
+    ()=>walletKeys
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useQuery.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$wallet$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/wallet-service.js [app-client] (ecmascript)");
+var _s = __turbopack_context__.k.signature();
+;
+;
+const walletKeys = {
+    all: [
+        "wallets"
+    ],
+    lists: ()=>[
+            ...walletKeys.all,
+            "list"
+        ],
+    list: (filters)=>[
+            ...walletKeys.lists(),
+            {
+                filters
+            }
+        ],
+    details: ()=>[
+            ...walletKeys.all,
+            "detail"
+        ],
+    detail: (id)=>[
+            ...walletKeys.details(),
+            id
+        ]
+};
+const useWallets = ()=>{
+    _s();
+    var _s1 = __turbopack_context__.k.signature();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    const getWallets = (userId)=>{
+        _s1();
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+            queryKey: walletKeys.list({
+                userId
+            }),
+            queryFn: {
+                "useWallets.getWallets.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$wallet$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["walletService"].getWallets(userId)
+            }["useWallets.getWallets.useQuery"],
+            enabled: !!userId,
+            staleTime: 2 * 60 * 1000
+        });
+    };
+    _s1(getWallets, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+        ];
+    });
+    const createWalletMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$wallet$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["walletService"].createWallet,
+        onSuccess: {
+            "useWallets.useMutation[createWalletMutation]": (result)=>{
+                if (result.data) {
+                    queryClient.invalidateQueries({
+                        queryKey: walletKeys.lists()
+                    });
+                }
+            }
+        }["useWallets.useMutation[createWalletMutation]"],
+        onError: {
+            "useWallets.useMutation[createWalletMutation]": (error)=>{
+                console.error("Error creating wallet:", error);
+            }
+        }["useWallets.useMutation[createWalletMutation]"]
+    });
+    const createDefaultWalletMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$wallet$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["walletService"].createDefaultWallet,
+        onSuccess: {
+            "useWallets.useMutation[createDefaultWalletMutation]": (result)=>{
+                if (result.data) {
+                    queryClient.invalidateQueries({
+                        queryKey: walletKeys.lists()
+                    });
+                }
+            }
+        }["useWallets.useMutation[createDefaultWalletMutation]"],
+        onError: {
+            "useWallets.useMutation[createDefaultWalletMutation]": (error)=>{
+                console.error("Error creating default wallet:", error);
+            }
+        }["useWallets.useMutation[createDefaultWalletMutation]"]
+    });
+    const updateWalletMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useWallets.useMutation[updateWalletMutation]": (param)=>{
+                let { walletId, updates } = param;
+                return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$wallet$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["walletService"].updateWallet(walletId, updates);
+            }
+        }["useWallets.useMutation[updateWalletMutation]"],
+        onSuccess: {
+            "useWallets.useMutation[updateWalletMutation]": (result, variables)=>{
+                if (result.data) {
+                    queryClient.setQueryData(walletKeys.lists(), {
+                        "useWallets.useMutation[updateWalletMutation]": (old)=>old === null || old === void 0 ? void 0 : old.map({
+                                "useWallets.useMutation[updateWalletMutation]": (wallet)=>wallet.wallet_id === variables.walletId ? result.data[0] : wallet
+                            }["useWallets.useMutation[updateWalletMutation]"])
+                    }["useWallets.useMutation[updateWalletMutation]"]);
+                }
+            }
+        }["useWallets.useMutation[updateWalletMutation]"]
+    });
+    const deleteWalletMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$wallet$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["walletService"].deleteWallet,
+        onSuccess: {
+            "useWallets.useMutation[deleteWalletMutation]": (result, variables)=>{
+                queryClient.setQueryData(walletKeys.lists(), {
+                    "useWallets.useMutation[deleteWalletMutation]": (old)=>old === null || old === void 0 ? void 0 : old.filter({
+                            "useWallets.useMutation[deleteWalletMutation]": (wallet)=>wallet.wallet_id !== variables
+                        }["useWallets.useMutation[deleteWalletMutation]"])
+                }["useWallets.useMutation[deleteWalletMutation]"]);
+            }
+        }["useWallets.useMutation[deleteWalletMutation]"]
+    });
+    const createWallet = (walletData)=>{
+        return createWalletMutation.mutateAsync(walletData);
+    };
+    const createDefaultWallet = (userId)=>{
+        return createDefaultWalletMutation.mutateAsync(userId);
+    };
+    const updateWallet = (walletId, updates)=>{
+        return updateWalletMutation.mutateAsync({
+            walletId,
+            updates
+        });
+    };
+    const deleteWallet = (walletId)=>{
+        return deleteWalletMutation.mutateAsync(walletId);
+    };
+    const clearError = ()=>{
+        createWalletMutation.reset();
+        createDefaultWalletMutation.reset();
+        updateWalletMutation.reset();
+        deleteWalletMutation.reset();
+    };
+    return {
+        // Query methods
+        getWallets,
+        // Mutation methods
+        createWallet,
+        createDefaultWallet,
+        updateWallet,
+        deleteWallet,
+        clearError,
+        mutations: {
+            createWallet: createWalletMutation,
+            createDefaultWallet: createDefaultWalletMutation,
+            updateWallet: updateWalletMutation,
+            deleteWallet: deleteWalletMutation
+        }
+    };
+};
+_s(useWallets, "XYL3ll1vYVcE7X864npdB7+gHFY=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/api/transaction/route.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "createTransaction",
+    ()=>createTransaction,
+    "deleteTransaction",
+    ()=>deleteTransaction,
+    "getTransactionById",
+    ()=>getTransactionById,
+    "getTransactions",
+    ()=>getTransactions,
+    "getTransactionsByCategory",
+    ()=>getTransactionsByCategory,
+    "getTransactionsByDateRange",
+    ()=>getTransactionsByDateRange,
+    "getTransactionsByWallet",
+    ()=>getTransactionsByWallet,
+    "updateTransaction",
+    ()=>updateTransaction
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-client] (ecmascript)");
+;
+async function getTransactions(userId) {
+    let filters = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+    let query = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").select("*, categories (*)").eq("user_id", userId);
+    if (filters.wallet_id) {
+        query = query.eq("wallet_id", filters.wallet_id);
+    }
+    if (filters.startDate && filters.endDate) {
+        query = query.gte("date", filters.startDate).lte("date", filters.endDate);
+    }
+    const { data, error } = await query.order("date", {
+        ascending: false
+    });
+    return {
+        data,
+        error
+    };
+}
+async function createTransaction(transactionData) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").insert([
+        transactionData
+    ]).select();
+    return {
+        data,
+        error
+    };
+}
+async function updateTransaction(transactionId, updates) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").update(updates).eq("transaction_id", transactionId).select();
+    return {
+        data,
+        error
+    };
+}
+async function deleteTransaction(transactionId) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").delete().eq("transaction_id", transactionId);
+    return {
+        data,
+        error
+    };
+}
+async function getTransactionById(transactionId) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").select("*, categories (*)").eq("transaction_id", transactionId).single();
+    return {
+        data,
+        error
+    };
+}
+async function getTransactionsByWallet(userId, walletId) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").select("*, categories (*)").eq("user_id", userId).eq("wallet_id", walletId).order("date", {
+        ascending: false
+    });
+    return {
+        data,
+        error
+    };
+}
+async function getTransactionsByCategory(userId, categoryId) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").select("*, categories (*)").eq("user_id", userId).eq("category_id", categoryId).order("date", {
+        ascending: false
+    });
+    return {
+        data,
+        error
+    };
+}
+async function getTransactionsByDateRange(userId, startDate, endDate) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").select("*, categories (*)").eq("user_id", userId).gte("date", startDate).lte("date", endDate).order("date", {
+        ascending: false
+    });
+    return {
+        data,
+        error
+    };
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/services/transaction-service.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "TransactionService",
+    ()=>TransactionService,
+    "transactionService",
+    ()=>transactionService
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/api/transaction/route.js [app-client] (ecmascript)");
+;
+class TransactionService {
+    async getTransactions(userId) {
+        let filters = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        try {
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getTransactions"])(userId, filters);
+            return result;
+        } catch (error) {
+            console.error("Error fetching transactions:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+    async getTransactionById(transactionId) {
+        try {
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getTransactionById"])(transactionId);
+            return result;
+        } catch (error) {
+            console.error("Error fetching transaction:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+    async createTransaction(transactionData) {
+        try {
+            console.log("🎯 Transaction Service - Creating transaction with data:", JSON.stringify(transactionData, null, 2));
+            if (!transactionData.user_id || !transactionData.amount || !transactionData.transaction_type || !transactionData.date) {
+                console.error("❌ Missing required fields:", {
+                    user_id: transactionData.user_id,
+                    amount: transactionData.amount,
+                    transaction_type: transactionData.transaction_type,
+                    date: transactionData.date
+                });
+                throw new Error("User ID, amount, transaction type, and date are required");
+            }
+            if (transactionData.amount <= 0) {
+                throw new Error("Transaction amount must be greater than 0");
+            }
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createTransaction"])(transactionData);
+            console.log("✅ Transaction creation result:", result);
+            return result;
+        } catch (error) {
+            console.error("❌ Error creating transaction:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+    async updateTransaction(transactionId, updates) {
+        try {
+            console.log("Service: Updating transaction", transactionId, updates);
+            if (!transactionId) {
+                throw new Error("Transaction ID is required");
+            }
+            if (updates.amount && updates.amount <= 0) {
+                throw new Error("Transaction amount must be greater than 0");
+            }
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateTransaction"])(transactionId, updates);
+            console.log("Service: Update result", result);
+            if (result.error) {
+                console.error("Service: Update failed:", result.error);
+                throw result.error;
+            }
+            return result;
+        } catch (error) {
+            console.error("Service: Error updating transaction:", error);
+            throw error;
+        }
+    }
+    async deleteTransaction(transactionId) {
+        try {
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["deleteTransaction"])(transactionId);
+            return result;
+        } catch (error) {
+            console.error("Error deleting transaction:", error);
+            return {
+                error
+            };
+        }
+    }
+    async getTransactionsByWallet(userId, walletId) {
+        try {
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getTransactionsByWallet"])(userId, walletId);
+            return result;
+        } catch (error) {
+            console.error("Error fetching wallet transactions:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+    async getTransactionsByCategory(userId, categoryId) {
+        try {
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getTransactionsByCategory"])(userId, categoryId);
+            return result;
+        } catch (error) {
+            console.error("Error fetching category transactions:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+    async getTransactionsByDateRange(userId, startDate, endDate) {
+        try {
+            const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$transaction$2f$route$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getTransactionsByDateRange"])(userId, startDate, endDate);
+            return result;
+        } catch (error) {
+            console.error("Error fetching transactions by date range:", error);
+            return {
+                data: null,
+                error
+            };
+        }
+    }
+}
+const transactionService = new TransactionService();
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/hooks/useTransactions.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__,
+    "transactionKeys",
+    ()=>transactionKeys,
+    "useTransactions",
+    ()=>useTransactions
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useQuery.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/transaction-service.js [app-client] (ecmascript)");
+var _s = __turbopack_context__.k.signature();
+;
+;
+const transactionKeys = {
+    all: [
+        "transactions"
+    ],
+    lists: ()=>[
+            ...transactionKeys.all,
+            "list"
+        ],
+    list: (filters)=>[
+            ...transactionKeys.lists(),
+            {
+                filters
+            }
+        ],
+    details: ()=>[
+            ...transactionKeys.all,
+            "detail"
+        ],
+    detail: (id)=>[
+            ...transactionKeys.details(),
+            id
+        ],
+    byWallet: (walletId)=>[
+            ...transactionKeys.lists(),
+            {
+                walletId
+            }
+        ],
+    byCategory: (categoryId)=>[
+            ...transactionKeys.lists(),
+            {
+                categoryId
+            }
+        ],
+    byDateRange: (startDate, endDate)=>[
+            ...transactionKeys.lists(),
+            {
+                startDate,
+                endDate
+            }
+        ]
+};
+const useTransactions = ()=>{
+    _s();
+    var _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature(), _s3 = __turbopack_context__.k.signature(), _s4 = __turbopack_context__.k.signature(), _s5 = __turbopack_context__.k.signature();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    const getTransactions = function(userId) {
+        let filters = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        _s1();
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+            queryKey: transactionKeys.list({
+                userId,
+                ...filters
+            }),
+            queryFn: {
+                "useTransactions.getTransactions.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["transactionService"].getTransactions(userId, filters)
+            }["useTransactions.getTransactions.useQuery"],
+            enabled: !!userId,
+            staleTime: 2 * 60 * 1000
+        });
+    };
+    _s1(getTransactions, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+        ];
+    });
+    const getTransactionById = (transactionId)=>{
+        _s2();
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+            queryKey: transactionKeys.detail(transactionId),
+            queryFn: {
+                "useTransactions.getTransactionById.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["transactionService"].getTransactionById(transactionId)
+            }["useTransactions.getTransactionById.useQuery"],
+            enabled: !!transactionId,
+            staleTime: 5 * 60 * 1000
+        });
+    };
+    _s2(getTransactionById, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+        ];
+    });
+    const getTransactionsByWallet = (userId, walletId)=>{
+        _s3();
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+            queryKey: transactionKeys.byWallet(walletId),
+            queryFn: {
+                "useTransactions.getTransactionsByWallet.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["transactionService"].getTransactionsByWallet(userId, walletId)
+            }["useTransactions.getTransactionsByWallet.useQuery"],
+            enabled: !!userId && !!walletId,
+            staleTime: 2 * 60 * 1000
+        });
+    };
+    _s3(getTransactionsByWallet, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+        ];
+    });
+    const getTransactionsByCategory = (userId, categoryId)=>{
+        _s4();
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+            queryKey: transactionKeys.byCategory(categoryId),
+            queryFn: {
+                "useTransactions.getTransactionsByCategory.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["transactionService"].getTransactionsByCategory(userId, categoryId)
+            }["useTransactions.getTransactionsByCategory.useQuery"],
+            enabled: !!userId && !!categoryId,
+            staleTime: 2 * 60 * 1000
+        });
+    };
+    _s4(getTransactionsByCategory, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+        ];
+    });
+    const getTransactionsByDateRange = (userId, startDate, endDate)=>{
+        _s5();
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+            queryKey: transactionKeys.byDateRange(startDate, endDate),
+            queryFn: {
+                "useTransactions.getTransactionsByDateRange.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["transactionService"].getTransactionsByDateRange(userId, startDate, endDate)
+            }["useTransactions.getTransactionsByDateRange.useQuery"],
+            enabled: !!userId && !!startDate && !!endDate,
+            staleTime: 2 * 60 * 1000
+        });
+    };
+    _s5(getTransactionsByDateRange, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+        ];
+    });
+    const createTransactionMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["transactionService"].createTransaction,
+        onSuccess: {
+            "useTransactions.useMutation[createTransactionMutation]": (result)=>{
+                if (result.data) {
+                    // Invalidate all transaction lists
+                    queryClient.invalidateQueries({
+                        queryKey: transactionKeys.lists()
+                    });
+                    // Also invalidate dashboard queries that might be affected
+                    queryClient.invalidateQueries({
+                        queryKey: [
+                            "dashboard"
+                        ]
+                    });
+                    queryClient.invalidateQueries({
+                        queryKey: [
+                            "reports"
+                        ]
+                    });
+                }
+            }
+        }["useTransactions.useMutation[createTransactionMutation]"],
+        onError: {
+            "useTransactions.useMutation[createTransactionMutation]": (error)=>{
+                console.error("Error creating transaction:", error);
+            }
+        }["useTransactions.useMutation[createTransactionMutation]"]
+    });
+    const updateTransactionMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useTransactions.useMutation[updateTransactionMutation]": (param)=>{
+                let { transactionId, updates } = param;
+                return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["transactionService"].updateTransaction(transactionId, updates);
+            }
+        }["useTransactions.useMutation[updateTransactionMutation]"],
+        onSuccess: {
+            "useTransactions.useMutation[updateTransactionMutation]": (result, variables)=>{
+                if (result.data) {
+                    // Update the specific transaction in all lists and cache
+                    queryClient.setQueryData(transactionKeys.detail(variables.transactionId), result.data[0]);
+                    queryClient.setQueryData(transactionKeys.lists(), {
+                        "useTransactions.useMutation[updateTransactionMutation]": (old)=>old === null || old === void 0 ? void 0 : old.map({
+                                "useTransactions.useMutation[updateTransactionMutation]": (transaction)=>transaction.transaction_id === variables.transactionId ? result.data[0] : transaction
+                            }["useTransactions.useMutation[updateTransactionMutation]"])
+                    }["useTransactions.useMutation[updateTransactionMutation]"]);
+                    // Invalidate dashboard and reports
+                    queryClient.invalidateQueries({
+                        queryKey: [
+                            "dashboard"
+                        ]
+                    });
+                    queryClient.invalidateQueries({
+                        queryKey: [
+                            "reports"
+                        ]
+                    });
+                }
+            }
+        }["useTransactions.useMutation[updateTransactionMutation]"],
+        onError: {
+            "useTransactions.useMutation[updateTransactionMutation]": (error)=>{
+                console.error("Error updating transaction:", error);
+            }
+        }["useTransactions.useMutation[updateTransactionMutation]"]
+    });
+    const deleteTransactionMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$transaction$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["transactionService"].deleteTransaction,
+        onSuccess: {
+            "useTransactions.useMutation[deleteTransactionMutation]": (result, variables)=>{
+                // Remove the transaction from all caches
+                queryClient.removeQueries({
+                    queryKey: transactionKeys.detail(variables)
+                });
+                queryClient.setQueryData(transactionKeys.lists(), {
+                    "useTransactions.useMutation[deleteTransactionMutation]": (old)=>old === null || old === void 0 ? void 0 : old.filter({
+                            "useTransactions.useMutation[deleteTransactionMutation]": (transaction)=>transaction.transaction_id !== variables
+                        }["useTransactions.useMutation[deleteTransactionMutation]"])
+                }["useTransactions.useMutation[deleteTransactionMutation]"]);
+                // Invalidate dashboard and reports
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "dashboard"
+                    ]
+                });
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "reports"
+                    ]
+                });
+            }
+        }["useTransactions.useMutation[deleteTransactionMutation]"],
+        onError: {
+            "useTransactions.useMutation[deleteTransactionMutation]": (error)=>{
+                console.error("Error deleting transaction:", error);
+            }
+        }["useTransactions.useMutation[deleteTransactionMutation]"]
+    });
+    // Mutation methods
+    const createTransaction = (transactionData)=>{
+        return createTransactionMutation.mutateAsync(transactionData);
+    };
+    const updateTransaction = (transactionId, updates)=>{
+        return updateTransactionMutation.mutateAsync({
+            transactionId,
+            updates
+        });
+    };
+    const deleteTransaction = (transactionId)=>{
+        return deleteTransactionMutation.mutateAsync(transactionId);
+    };
+    const clearError = ()=>{
+        createTransactionMutation.reset();
+        updateTransactionMutation.reset();
+        deleteTransactionMutation.reset();
+    };
+    return {
+        // Query methods
+        getTransactions,
+        getTransactionById,
+        getTransactionsByWallet,
+        getTransactionsByCategory,
+        getTransactionsByDateRange,
+        // Mutation methods
+        createTransaction,
+        updateTransaction,
+        deleteTransaction,
+        clearError,
+        // Mutation states
+        mutations: {
+            createTransaction: createTransactionMutation,
+            updateTransaction: updateTransactionMutation,
+            deleteTransaction: deleteTransactionMutation
+        }
+    };
+};
+_s(useTransactions, "A47QGLsNVJAK+lWFx37jZDg+L7c=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
+const __TURBOPACK__default__export__ = useTransactions;
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/app/pages/dashboard/page.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>WalletsPage
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Navbar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/components/Navbar.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$userContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/userContext.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useWallets$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useWallets.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useTransactions$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useTransactions.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+;
+;
+;
+function WalletsPage() {
+    _s();
+    var _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature();
+    const { user, loading: userLoading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$userContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useUser"])();
+    const { getWallets, createWallet, deleteWallet, updateWallet } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useWallets$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWallets"])();
+    const { getTransactions } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useTransactions$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransactions"])();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const [showWalletModal, setShowWalletModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showEditWalletModal, setShowEditWalletModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [selectedWallet, setSelectedWallet] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [walletToEdit, setWalletToEdit] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [walletBalances, setWalletBalances] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
+    const [goals, setGoals] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [budgets, setBudgets] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loadingGoals, setLoadingGoals] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [loadingBudgets, setLoadingBudgets] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [showDeleteWalletModal, setShowDeleteWalletModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [walletToDelete, setWalletToDelete] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    // Fetch wallets and transactions
+    const { data: walletsData, isLoading: walletsLoading, refetch: refetchWallets } = getWallets(user === null || user === void 0 ? void 0 : user.id);
+    const { data: transactionsData, isLoading: transactionsLoading } = getTransactions(user === null || user === void 0 ? void 0 : user.id, {
+        limit: 5
+    });
+    const wallets = (walletsData === null || walletsData === void 0 ? void 0 : walletsData.data) || [];
+    const transactions = (transactionsData === null || transactionsData === void 0 ? void 0 : transactionsData.data) || [];
+    // Fetch goals data
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "WalletsPage.useEffect": ()=>{
+            const fetchGoals = {
+                "WalletsPage.useEffect.fetchGoals": async ()=>{
+                    if (!(user === null || user === void 0 ? void 0 : user.id)) return;
+                    setLoadingGoals(true);
+                    try {
+                        const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").select("*").eq("user_id", user.id).order("created_at", {
+                            ascending: false
+                        }).limit(3);
+                        if (error) {
+                            console.error("Error fetching goals:", error);
+                        } else {
+                            setGoals(data || []);
+                        }
+                    } catch (error) {
+                        console.error("Error fetching goals:", error);
+                    } finally{
+                        setLoadingGoals(false);
+                    }
+                }
+            }["WalletsPage.useEffect.fetchGoals"];
+            fetchGoals();
+        }
+    }["WalletsPage.useEffect"], [
+        user === null || user === void 0 ? void 0 : user.id
+    ]);
+    // Fetch budgets data
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "WalletsPage.useEffect": ()=>{
+            const fetchBudgets = {
+                "WalletsPage.useEffect.fetchBudgets": async ()=>{
+                    if (!(user === null || user === void 0 ? void 0 : user.id)) return;
+                    setLoadingBudgets(true);
+                    try {
+                        const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("budgets").select("*").eq("user_id", user.id).order("created_at", {
+                            ascending: false
+                        }).limit(1);
+                        if (error) {
+                            console.error("Error fetching budgets:", error);
+                        } else {
+                            setBudgets(data || []);
+                        }
+                    } catch (error) {
+                        console.error("Error fetching budgets:", error);
+                    } finally{
+                        setLoadingBudgets(false);
+                    }
+                }
+            }["WalletsPage.useEffect.fetchBudgets"];
+            fetchBudgets();
+        }
+    }["WalletsPage.useEffect"], [
+        user === null || user === void 0 ? void 0 : user.id
+    ]);
+    // Calculate wallet balances based on transactions
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "WalletsPage.useEffect": ()=>{
+            const calculateWalletBalances = {
+                "WalletsPage.useEffect.calculateWalletBalances": async ()=>{
+                    if (!(user === null || user === void 0 ? void 0 : user.id) || wallets.length === 0) return;
+                    const balances = {};
+                    for (const wallet of wallets){
+                        // Get all transactions for this wallet
+                        const { data: walletTransactions, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("transactions").select("amount, transaction_type").eq("wallet_id", wallet.wallet_id).eq("user_id", user.id);
+                        if (error) {
+                            console.error("Error fetching wallet transactions:", error);
+                            balances[wallet.wallet_id] = wallet.balance;
+                            continue;
+                        }
+                        // Calculate balance from transactions
+                        let calculatedBalance = parseFloat(wallet.balance) || 0;
+                        if (walletTransactions) {
+                            walletTransactions.forEach({
+                                "WalletsPage.useEffect.calculateWalletBalances": (transaction)=>{
+                                    if (transaction.transaction_type === "income") {
+                                        calculatedBalance += parseFloat(transaction.amount);
+                                    } else {
+                                        calculatedBalance -= parseFloat(transaction.amount);
+                                    }
+                                }
+                            }["WalletsPage.useEffect.calculateWalletBalances"]);
+                        }
+                        balances[wallet.wallet_id] = calculatedBalance;
+                    }
+                    setWalletBalances(balances);
+                }
+            }["WalletsPage.useEffect.calculateWalletBalances"];
+            calculateWalletBalances();
+        }
+    }["WalletsPage.useEffect"], [
+        user === null || user === void 0 ? void 0 : user.id,
+        wallets,
+        transactions
+    ]);
+    // Auto-select first wallet if none selected
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "WalletsPage.useEffect": ()=>{
+            if (wallets.length > 0 && !selectedWallet) {
+                setSelectedWallet(wallets[0]);
+            }
+        }
+    }["WalletsPage.useEffect"], [
+        wallets,
+        selectedWallet
+    ]);
+    const handleAddWallet = async (walletData)=>{
+        try {
+            await createWallet(walletData);
+            setShowWalletModal(false);
+            refetchWallets();
+        } catch (error) {
+            console.error("Failed to create wallet:", error);
+        }
+    };
+    const handleEditWallet = async (walletData)=>{
+        try {
+            await updateWallet(walletData.wallet_id, {
+                wallet_name: walletData.wallet_name,
+                currency: walletData.currency
+            });
+            setShowEditWalletModal(false);
+            setWalletToEdit(null);
+            refetchWallets();
+        } catch (error) {
+            console.error("Failed to update wallet:", error);
+        }
+    };
+    const handleDeleteWallet = async (walletId)=>{
+        try {
+            await deleteWallet(walletId);
+            refetchWallets();
+            // Reset selected wallet if it was deleted
+            if ((selectedWallet === null || selectedWallet === void 0 ? void 0 : selectedWallet.wallet_id) === walletId) {
+                setSelectedWallet(wallets.find((w)=>w.wallet_id !== walletId) || null);
+            }
+            setShowDeleteWalletModal(false);
+            setWalletToDelete(null);
+        } catch (error) {
+            console.error("Failed to delete wallet:", error);
+        }
+    };
+    // SVG Icons
+    const WalletIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 199,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 193,
+            columnNumber: 5
+        }, this);
+    };
+    const AddIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M12 4v16m8-8H4"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 215,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 209,
+            columnNumber: 5
+        }, this);
+    };
+    const CloseIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M6 18L18 6M6 6l12 12"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 231,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 225,
+            columnNumber: 5
+        }, this);
+    };
+    const EditIcon = (param)=>{
+        let { className = "w-4 h-4" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 247,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 241,
+            columnNumber: 5
+        }, this);
+    };
+    const DeleteIcon = (param)=>{
+        let { className = "w-4 h-4" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 263,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 257,
+            columnNumber: 5
+        }, this);
+    };
+    const ShoppingCartIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5.5M7 13l2.5 5.5m0 0L17 21"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 279,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 273,
+            columnNumber: 5
+        }, this);
+    };
+    const RestaurantIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 295,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 289,
+            columnNumber: 5
+        }, this);
+    };
+    const TrainIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M12 2c-4.97 0-9 4.03-9 9 0 4.97 4.03 9 9 9 4.97 0 9-4.03 9-9 0-4.97-4.03-9-9-9zm0 14.5a5.5 5.5 0 110-11 5.5 5.5 0 010 11z"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 311,
+                    columnNumber: 7
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                    cx: "12",
+                    cy: "12",
+                    r: "2.5"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 317,
+                    columnNumber: 7
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 305,
+            columnNumber: 5
+        }, this);
+    };
+    const TrendingUpIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 328,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 322,
+            columnNumber: 5
+        }, this);
+    };
+    const ReceiptIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 344,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 338,
+            columnNumber: 5
+        }, this);
+    };
+    const MovieIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 360,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 354,
+            columnNumber: 5
+        }, this);
+    };
+    const BoltIcon = (param)=>{
+        let { className = "w-5 h-5" } = param;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            className: className,
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M13 10V3L4 14h7v7l9-11h-7z"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 376,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 370,
+            columnNumber: 5
+        }, this);
+    };
+    // Wallet Card Component
+    const WalletCard = (param)=>{
+        let { wallet, isSelected, onSelect, index } = param;
+        const currentBalance = walletBalances[wallet.wallet_id] !== undefined ? walletBalances[wallet.wallet_id] : wallet.balance;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            onClick: onSelect,
+            className: "rounded-xl p-6 border-2 transition-all duration-300 cursor-pointer transform hover:scale-105 ".concat(isSelected ? "border-[#9b177e] bg-[#9b177e]/10 shadow-lg shadow-[#9b177e]/20" : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-black/20"),
+            style: {
+                animationDelay: "".concat(index * 100, "ms")
+            },
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center justify-between mb-4",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                            className: "text-[#FFEAD8] text-xl font-bold",
+                            children: wallet.wallet_name
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 405,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "p-2 rounded-full ".concat(isSelected ? "bg-[#9b177e]" : "bg-black/20"),
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(WalletIcon, {
+                                className: "w-5 h-5 text-white"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 413,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 408,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 404,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "space-y-2",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between items-center",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#FFEAD8]/70 text-sm",
+                                    children: "Current Balance"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 419,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#FFEAD8] font-bold text-lg",
+                                    children: [
+                                        "₱",
+                                        parseFloat(currentBalance).toLocaleString(undefined, {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2
+                                        })
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 420,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 418,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between items-center",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#FFEAD8]/70 text-sm",
+                                    children: "Currency"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 429,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#FFEAD8] font-medium",
+                                    children: wallet.currency
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 430,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 428,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between items-center",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#FFEAD8]/70 text-sm",
+                                    children: "Initial Balance"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 435,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#FFEAD8] text-sm",
+                                    children: [
+                                        "₱",
+                                        parseFloat(wallet.balance).toLocaleString(undefined, {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2
+                                        })
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 436,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 434,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 417,
+                    columnNumber: 9
+                }, this),
+                isSelected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mt-4 pt-4 border-t border-white/20",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex gap-2",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: (e)=>{
+                                    e.stopPropagation();
+                                    setWalletToEdit(wallet);
+                                    setShowEditWalletModal(true);
+                                },
+                                className: "flex-1 flex items-center justify-center gap-2 bg-black/20 hover:bg-white/20 text-[#FFEAD8] text-sm font-medium py-2 px-3 rounded-lg transition-colors",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(EditIcon, {
+                                        className: "w-4 h-4"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 457,
+                                        columnNumber: 17
+                                    }, this),
+                                    "Edit"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 449,
+                                columnNumber: 15
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: (e)=>{
+                                    e.stopPropagation();
+                                    setWalletToDelete(wallet);
+                                    setShowDeleteWalletModal(true);
+                                },
+                                className: "flex-1 flex items-center justify-center gap-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 text-sm font-medium py-2 px-3 rounded-lg transition-colors",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DeleteIcon, {
+                                        className: "w-4 h-4"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 468,
+                                        columnNumber: 17
+                                    }, this),
+                                    "Delete"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 460,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 448,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 447,
+                    columnNumber: 11
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 393,
+            columnNumber: 7
+        }, this);
+    };
+    // Transactions Card Component
+    const TransactionsCard = (param)=>{
+        let { transactions, loading } = param;
+        const getTransactionIcon = (category)=>{
+            const icons = {
+                groceries: ShoppingCartIcon,
+                food: RestaurantIcon,
+                transport: TrainIcon,
+                entertainment: MovieIcon,
+                utilities: BoltIcon,
+                salary: TrendingUpIcon,
+                default: ReceiptIcon
+            };
+            const IconComponent = icons[category === null || category === void 0 ? void 0 : category.toLowerCase()] || icons.default;
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(IconComponent, {
+                className: "w-5 h-5"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 492,
+                columnNumber: 14
+            }, this);
+        };
+        const getAmountColor = (type)=>{
+            if (type === "income") return "text-green-400";
+            return "text-[#FFEAD8]/90";
+        };
+        if (loading) {
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col gap-4 rounded-xl bg-[#FFEAD8]/5 p-6 border border-white/10",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                        className: "text-[#FFEAD8] text-xl font-bold",
+                        children: "Recent Transactions"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 503,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "animate-pulse space-y-4",
+                        children: [
+                            1,
+                            2,
+                            3
+                        ].map((i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex gap-4",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "size-10 bg-black/20 rounded-full"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 509,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex-1 space-y-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "h-4 bg-black/20 rounded w-3/4"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 511,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "h-3 bg-black/20 rounded w-1/2"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 512,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 510,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, i, true, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 508,
+                                columnNumber: 15
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 506,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 502,
+                columnNumber: 9
+            }, this);
+        }
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex flex-col gap-4 rounded-xl bg-[#FFEAD8]/5  p-6 border border-white/10 hover:shadow-lg hover:shadow-[#9b177e]/10 transition-all duration-300",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                    className: "text-[#FFEAD8] text-xl font-bold leading-tight tracking-[-0.015em]",
+                    children: "Recent Transactions"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 523,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                    className: "flex flex-col gap-4 py-4",
+                    children: [
+                        transactions.slice(0, 4).map((transaction, index)=>{
+                            var _transaction_categories, _transaction_categories1;
+                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                className: "flex items-center justify-between gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-200 hover:scale-105",
+                                style: {
+                                    animationDelay: "".concat(index * 100, "ms")
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center justify-center size-10 rounded-full ".concat(transaction.transaction_type === "income" ? "bg-green-500/20" : "bg-[#E8988A]/20"),
+                                                children: getTransactionIcon((_transaction_categories = transaction.categories) === null || _transaction_categories === void 0 ? void 0 : _transaction_categories.category_name)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 537,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "font-semibold text-[#FFEAD8]",
+                                                        children: transaction.description || "No description"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                        lineNumber: 547,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-sm text-[#FFEAD8]/70",
+                                                        children: ((_transaction_categories1 = transaction.categories) === null || _transaction_categories1 === void 0 ? void 0 : _transaction_categories1.category_name) || "Uncategorized"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                        lineNumber: 550,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 546,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 536,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "font-semibold ".concat(getAmountColor(transaction.transaction_type)),
+                                        children: [
+                                            transaction.transaction_type === "income" ? "+" : "-",
+                                            "₱",
+                                            Math.abs(parseFloat(transaction.amount)).toLocaleString()
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 555,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, transaction.transaction_id, true, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 529,
+                                columnNumber: 13
+                            }, this);
+                        }),
+                        transactions.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                            className: "text-center py-8 text-[#FFEAD8]/50",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ReceiptIcon, {
+                                    className: "w-10 h-10 mx-auto mb-2"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 568,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: "No transactions yet"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 569,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 567,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 527,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                    onClick: ()=>router.push("./dashboard/transactions"),
+                    className: "mt-auto flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#9b177e] text-white text-sm font-bold leading-normal hover:opacity-90 transition-all duration-200 hover:scale-105",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "truncate",
+                        children: "Go to Transaction History"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 578,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 574,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 522,
+            columnNumber: 7
+        }, this);
+    };
+    // Budget Card Component - Updated to use real data
+    const BudgetCard = ()=>{
+        if (loadingBudgets) {
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col gap-4 rounded-xl bg-[#FFEAD8]/5 p-6 border border-white/10",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                        className: "text-[#FFEAD8] text-xl font-bold",
+                        children: "Budget Summary"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 589,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "animate-pulse space-y-4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "h-40 bg-black/20 rounded"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 591,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "h-4 bg-black/20 rounded"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 592,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "h-4 bg-black/20 rounded w-3/4"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 593,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 590,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 588,
+                columnNumber: 9
+            }, this);
+        }
+        const currentBudget = budgets[0];
+        if (!currentBudget) {
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col gap-4 rounded-xl bg-[#FFEAD8]/5 p-6 border border-white/10 hover:shadow-lg hover:shadow-[#9b177e]/10 transition-all duration-300",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                        className: "text-[#FFEAD8] text-xl font-bold leading-tight tracking-[-0.015em]",
+                        children: "Budget Summary"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 604,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "text-center py-8 text-[#FFEAD8]/50",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "No budget set"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 608,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-sm mt-2",
+                                children: "Create a budget to start tracking"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 609,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 607,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        className: "mt-auto flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#9b177e] text-white text-sm font-bold leading-normal hover:opacity-90 transition-all duration-200 hover:scale-105",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "truncate",
+                            children: "Create Budget"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 612,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 611,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 603,
+                columnNumber: 9
+            }, this);
+        }
+        // Calculate progress percentage (you'll need to replace this with actual spending data)
+        const progressPercentage = 62; // Example percentage
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex flex-col gap-4 rounded-xl bg-[#FFEAD8]/5 p-6 border border-white/10 hover:shadow-lg hover:shadow-[#9b177e]/10 transition-all duration-300",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                    className: "text-[#FFEAD8] text-xl font-bold leading-tight tracking-[-0.015em]",
+                    children: currentBudget.budget_name
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 623,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center justify-center my-4",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "relative size-40",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                className: "size-full",
+                                height: "36",
+                                viewBox: "0 0 36 36",
+                                width: "36",
+                                xmlns: "http://www.w3.org/2000/svg",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                        className: "stroke-[#E8988A]/20",
+                                        cx: "18",
+                                        cy: "18",
+                                        fill: "none",
+                                        r: "16",
+                                        strokeWidth: "3"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 635,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                        className: "stroke-[#E8988A]",
+                                        cx: "18",
+                                        cy: "18",
+                                        fill: "none",
+                                        r: "16",
+                                        strokeDasharray: "".concat(progressPercentage, " 100"),
+                                        strokeDashoffset: 100 - progressPercentage,
+                                        strokeLinecap: "round",
+                                        strokeWidth: "3"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 643,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 628,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute inset-0 flex flex-col items-center justify-center",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-2xl font-bold text-[#FFEAD8]",
+                                        children: [
+                                            progressPercentage,
+                                            "%"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 656,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-sm text-[#FFEAD8]/70",
+                                        children: "Used"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 659,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 655,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 627,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 626,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex flex-col gap-3",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between text-sm text-[#FFEAD8]/90",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: "Budget Amount"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 665,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    children: [
+                                        "₱",
+                                        parseFloat(currentBudget.amount).toLocaleString()
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 666,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 664,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between text-sm text-[#FFEAD8]/90",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: "Period"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 669,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    children: currentBudget.period
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 670,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 668,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 663,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                    onClick: ()=>router.push("./dashboard/budget"),
+                    className: "mt-auto flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#9b177e] text-white text-sm font-bold leading-normal hover:opacity-90 transition-all duration-200 hover:scale-105",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "truncate",
+                        children: "View Budget Details"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 677,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 673,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 622,
+            columnNumber: 7
+        }, this);
+    };
+    // Goals Card Component - Updated to use real data
+    const GoalsCard = ()=>{
+        if (loadingGoals) {
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col gap-4 rounded-xl bg-[#FFEAD8]/5 p-6 border border-white/10",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                        className: "text-[#FFEAD8] text-xl font-bold",
+                        children: "Goal Progress"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 688,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "animate-pulse space-y-4",
+                        children: [
+                            1,
+                            2,
+                            3
+                        ].map((i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "space-y-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "h-4 bg-black/20 rounded w-3/4"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 692,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "h-2 bg-black/20 rounded"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 693,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, i, true, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 691,
+                                columnNumber: 15
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 689,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 687,
+                columnNumber: 9
+            }, this);
+        }
+        if (goals.length === 0) {
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col gap-4 rounded-xl bg-[#FFEAD8]/5 p-6 border border-white/10 hover:shadow-lg hover:shadow-[#9b177e]/10 transition-all duration-300",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                        className: "text-[#FFEAD8] text-xl font-bold leading-tight tracking-[-0.015em]",
+                        children: "Goal Progress"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 704,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "text-center py-8 text-[#FFEAD8]/50",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "No goals set"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 708,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-sm mt-2",
+                                children: "Create financial goals to track progress"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                lineNumber: 709,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 707,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        className: "mt-auto flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#9b177e] text-white text-sm font-bold leading-normal hover:opacity-90 transition-all duration-200 hover:scale-105",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "truncate",
+                            children: "Create Goal"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 714,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 713,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 703,
+                columnNumber: 9
+            }, this);
+        }
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex flex-col gap-4 rounded-xl bg-[#FFEAD8]/5 p-6 border border-white/10 hover:shadow-lg hover:shadow-[#9b177e]/10 transition-all duration-300",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                    className: "text-[#FFEAD8] text-xl font-bold leading-tight tracking-[-0.015em]",
+                    children: "Goal Progress"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 722,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex flex-col gap-6 py-4",
+                    children: goals.map((goal, index)=>{
+                        // Calculate progress percentage (you'll need to replace this with actual progress data)
+                        const progressPercentage = Math.min(Math.round(goal.current_amount / goal.target_amount * 100), 100);
+                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex flex-col gap-2",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex justify-between items-baseline",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[#FFEAD8] font-semibold",
+                                            children: goal.goal_name
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 736,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[#FFEAD8]/70 text-sm",
+                                            children: [
+                                                progressPercentage,
+                                                "%"
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 739,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 735,
+                                    columnNumber: 17
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "w-full bg-[#E8988A]/20 rounded-full h-2.5",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "bg-[#E8988A] h-2.5 rounded-full transition-all duration-500",
+                                        style: {
+                                            width: "".concat(progressPercentage, "%")
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 744,
+                                        columnNumber: 19
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 743,
+                                    columnNumber: 17
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex justify-between text-xs text-[#FFEAD8]/70",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: [
+                                                "₱",
+                                                parseFloat(goal.current_amount).toLocaleString()
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 750,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: [
+                                                "₱",
+                                                parseFloat(goal.target_amount).toLocaleString()
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 753,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 749,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, goal.goal_id, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 734,
+                            columnNumber: 15
+                        }, this);
+                    })
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 725,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                    onClick: ()=>router.push("./dashboard/goal"),
+                    className: "mt-auto flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#9b177e] text-white text-sm font-bold leading-normal hover:opacity-90 transition-all duration-200 hover:scale-105",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "truncate",
+                        children: "View All Goals"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 765,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 761,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 721,
+            columnNumber: 7
+        }, this);
+    };
+    // Add Wallet Modal Component
+    const AddWalletModal = (param)=>{
+        let { isOpen, onClose, onSubmit } = param;
+        _s1();
+        const { user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$userContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useUser"])();
+        const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+            wallet_name: "",
+            balance: "0",
+            currency: "PHP"
+        });
+        const handleSubmit = (e)=>{
+            e.preventDefault();
+            if (!(user === null || user === void 0 ? void 0 : user.id)) {
+                console.error("User not found");
+                return;
+            }
+            onSubmit({
+                ...formData,
+                user_id: user.id,
+                balance: parseFloat(formData.balance)
+            });
+            setFormData({
+                wallet_name: "",
+                balance: "0",
+                currency: "PHP"
+            });
+        };
+        const handleInputChange = (e)=>{
+            const { name, value } = e.target;
+            setFormData((prev)=>({
+                    ...prev,
+                    [name]: value
+                }));
+        };
+        if (!isOpen) return null;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "bg-[#21121e] rounded-xl w-full max-w-md border border-white/10 shadow-2xl transform transition-all duration-300 scale-95 hover:scale-100",
+                onClick: (e)=>e.stopPropagation(),
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "p-6",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between items-center mb-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                    className: "text-[#FFEAD8] text-xl font-bold",
+                                    children: "Add New Wallet"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 816,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: onClose,
+                                    className: "text-[#FFEAD8]/70 hover:text-[#FFEAD8] transition-colors",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CloseIcon, {
+                                        className: "w-5 h-5"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 823,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 819,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 815,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                            onSubmit: handleSubmit,
+                            className: "space-y-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "text-[#FFEAD8] text-sm font-medium mb-2 block",
+                                            children: "Wallet Name"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 829,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "text",
+                                            name: "wallet_name",
+                                            value: formData.wallet_name,
+                                            onChange: handleInputChange,
+                                            placeholder: "e.g., Main Wallet, Savings",
+                                            className: "w-full bg-black/20 border border-white/20 rounded-lg px-4 py-3 text-[#FFEAD8] placeholder-[#FFEAD8]/50 focus:outline-none focus:border-[#9b177e] transition-colors",
+                                            required: true
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 832,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 828,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "text-[#FFEAD8] text-sm font-medium mb-2 block",
+                                            children: "Initial Balance"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 844,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "number",
+                                            name: "balance",
+                                            value: formData.balance,
+                                            onChange: handleInputChange,
+                                            placeholder: "₱0.00",
+                                            step: "0.01",
+                                            min: "0",
+                                            className: "w-full bg-black/20 border border-white/20 rounded-lg px-4 py-3 text-[#FFEAD8] placeholder-[#FFEAD8]/50 focus:outline-none focus:border-[#9b177e] transition-colors",
+                                            required: true
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 847,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 843,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "text-[#FFEAD8] text-sm font-medium mb-2 block",
+                                            children: "Currency"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 861,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                            name: "currency",
+                                            value: formData.currency,
+                                            onChange: handleInputChange,
+                                            className: "w-full bg-black border border-white/20 rounded-lg px-4 py-3 text-[#FFEAD8] focus:outline-none focus:border-[#9b177e] transition-colors",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "PHP",
+                                                    children: "Philippine Peso (₱)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                    lineNumber: 870,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "USD",
+                                                    children: "US Dollar ($)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                    lineNumber: 871,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "EUR",
+                                                    children: "Euro (€)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                    lineNumber: 872,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 864,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 860,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex gap-3 pt-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "button",
+                                            onClick: onClose,
+                                            className: "flex-1 bg-black/20 hover:bg-white/20 text-[#FFEAD8] py-3 rounded-lg font-medium transition-colors cursor-pointer",
+                                            children: "Cancel"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 877,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "submit",
+                                            className: "flex-1 bg-[#9b177e] hover:bg-[#9b177e]/90 text-white py-3 rounded-lg font-medium transition-colors cursor-pointer",
+                                            children: "Create Wallet"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 884,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 876,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 827,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 814,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 810,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 809,
+            columnNumber: 7
+        }, this);
+    };
+    _s1(AddWalletModal, "iB4mDg18bmnkYBQIYv0KqH/yrEk=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$userContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useUser"]
+        ];
+    });
+    // Edit Wallet Modal Component
+    const EditWalletModal = (param)=>{
+        let { isOpen, onClose, onSubmit, wallet } = param;
+        _s2();
+        const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+            wallet_name: "",
+            currency: "PHP"
+        });
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+            "WalletsPage.EditWalletModal.useEffect": ()=>{
+                if (wallet) {
+                    setFormData({
+                        wallet_name: wallet.wallet_name,
+                        currency: wallet.currency
+                    });
+                }
+            }
+        }["WalletsPage.EditWalletModal.useEffect"], [
+            wallet
+        ]);
+        const handleSubmit = (e)=>{
+            e.preventDefault();
+            onSubmit({
+                wallet_id: wallet.wallet_id,
+                ...formData
+            });
+        };
+        const handleInputChange = (e)=>{
+            const { name, value } = e.target;
+            setFormData((prev)=>({
+                    ...prev,
+                    [name]: value
+                }));
+        };
+        if (!isOpen || !wallet) return null;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "bg-[#21121e] rounded-xl w-full max-w-md border border-white/10 shadow-2xl transform transition-all duration-300 scale-95 hover:scale-100",
+                onClick: (e)=>e.stopPropagation(),
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "p-6",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between items-center mb-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                    className: "text-[#FFEAD8] text-xl font-bold",
+                                    children: "Edit Wallet"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 937,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: onClose,
+                                    className: "text-[#FFEAD8]/70 hover:text-[#FFEAD8] transition-colors cursor-pointer",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CloseIcon, {
+                                        className: "w-5 h-5"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 942,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 938,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 936,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                            onSubmit: handleSubmit,
+                            className: "space-y-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "text-[#FFEAD8] text-sm font-medium mb-2 block",
+                                            children: "Wallet Name"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 948,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "text",
+                                            name: "wallet_name",
+                                            value: formData.wallet_name,
+                                            onChange: handleInputChange,
+                                            placeholder: "e.g., Main Wallet, Savings",
+                                            className: "w-full bg-black/20 border border-white/20 rounded-lg px-4 py-3 text-[#FFEAD8] placeholder-[#FFEAD8]/50 focus:outline-none focus:border-[#9b177e] transition-colors",
+                                            required: true
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 951,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 947,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "text-[#FFEAD8] text-sm font-medium mb-2 block",
+                                            children: "Currency"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 963,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                            name: "currency",
+                                            value: formData.currency,
+                                            onChange: handleInputChange,
+                                            className: "w-full bg-black border border-white/20 rounded-lg px-4 py-3 text-[#FFEAD8] focus:outline-none focus:border-[#9b177e] transition-colors",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "PHP",
+                                                    children: "Philippine Peso (₱)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                    lineNumber: 972,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "USD",
+                                                    children: "US Dollar ($)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                    lineNumber: 973,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "EUR",
+                                                    children: "Euro (€)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                    lineNumber: 974,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 966,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 962,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "bg-blue-500/10 border border-blue-500/20 rounded-lg p-3",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-blue-300 text-sm",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                children: "Note:"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 980,
+                                                columnNumber: 19
+                                            }, this),
+                                            " Wallet balance is automatically calculated from your transactions."
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 979,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 978,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex gap-3 pt-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "button",
+                                            onClick: onClose,
+                                            className: "flex-1 bg-black/20 hover:bg-white/20 text-[#FFEAD8] py-3 rounded-lg font-medium transition-colors cursor-pointer",
+                                            children: "Cancel"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 986,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "submit",
+                                            className: "flex-1 bg-[#9b177e] hover:bg-[#9b177e]/90 text-white py-3 rounded-lg font-medium transition-colors cursor-pointer",
+                                            children: "Update Wallet"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 993,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 985,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 946,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 935,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 931,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 930,
+            columnNumber: 7
+        }, this);
+    };
+    _s2(EditWalletModal, "XwLbuL30mUhdZtxxhxEjjVt15WI=");
+    // Delete Wallet Modal Component
+    const DeleteWalletModal = (param)=>{
+        let { isOpen, onClose, onConfirm, wallet } = param;
+        if (!isOpen || !wallet) return null;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "bg-[#21121e] rounded-xl w-full max-w-md border border-white/10 shadow-2xl transform transition-all duration-300 scale-95 hover:scale-100",
+                onClick: (e)=>e.stopPropagation(),
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "p-6",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between items-center mb-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                    className: "text-[#FFEAD8] text-xl font-bold",
+                                    children: "Delete Wallet"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1019,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: onClose,
+                                    className: "text-[#FFEAD8]/70 hover:text-[#FFEAD8] transition-colors cursor-pointer",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CloseIcon, {
+                                        className: "w-5 h-5"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 1026,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1022,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 1018,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "space-y-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "bg-red-500/10 border border-red-500/20 rounded-lg p-4",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-3",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex-shrink-0",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DeleteIcon, {
+                                                        className: "w-5 h-5 text-red-400"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                        lineNumber: 1035,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                    lineNumber: 1034,
+                                                    columnNumber: 21
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 1033,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                        className: "text-[#FFEAD8] font-semibold",
+                                                        children: "Warning"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                        lineNumber: 1039,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-[#FFEAD8]/70 text-sm mt-1",
+                                                        children: "This action cannot be undone. All wallet data will be permanently removed."
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                        lineNumber: 1040,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 1038,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 1032,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1031,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "bg-white/5 rounded-lg p-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[#FFEAD8] text-center",
+                                            children: [
+                                                "Are you sure you want to delete",
+                                                " ",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                    children: [
+                                                        '"',
+                                                        wallet.wallet_name,
+                                                        '"'
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                    lineNumber: 1051,
+                                                    columnNumber: 19
+                                                }, this),
+                                                "?"
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1049,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[#FFEAD8]/70 text-sm text-center mt-2",
+                                            children: [
+                                                "Current Balance: ₱",
+                                                parseFloat(walletBalances[wallet.wallet_id] || wallet.balance).toLocaleString(undefined, {
+                                                    minimumFractionDigits: 2,
+                                                    maximumFractionDigits: 2
+                                                })
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1053,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1048,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex gap-3 pt-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: onClose,
+                                            className: "flex-1 bg-black/20 hover:bg-white/20 text-[#FFEAD8] py-3 rounded-lg font-medium transition-colors cursor-pointer",
+                                            children: "No, Cancel"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1065,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>onConfirm(wallet.wallet_id),
+                                            className: "flex-1 bg-[#9c167f] text-white py-3 rounded-lg font-medium transition-colors cursor-pointer",
+                                            children: "Yes, Delete"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1071,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1064,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 1030,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 1017,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 1013,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 1012,
+            columnNumber: 7
+        }, this);
+    };
+    if (userLoading) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "min-h-screen bg-[#2A1458] text-white",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Navbar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 1087,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center justify-center min-h-screen",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "text-white",
+                        children: "Loading..."
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                        lineNumber: 1089,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 1088,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/pages/dashboard/page.js",
+            lineNumber: 1086,
+            columnNumber: 7
+        }, this);
+    }
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "min-h-screen bg-[#21121e] text-white font-sans",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Navbar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 1097,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
+                className: "px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 py-10",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "max-w-7xl mx-auto",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex flex-wrap justify-between items-center gap-4 mt-10 mb-8",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex min-w-72 flex-col gap-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                            className: "text-[#FFEAD8] text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em]",
+                                            children: "My Digital Wallet"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1105,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[#FFEAD8]/70 text-base font-normal leading-normal",
+                                            children: "A quick overview of your budget, goals, and recent transactions."
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1108,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1104,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex flex-1 gap-3 flex-wrap justify-start sm:justify-end",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setShowWalletModal(true),
+                                        className: "flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-black/20 text-[#FFEAD8] text-sm font-bold leading-normal tracking-[0.015em] gap-2 hover:bg-white/20 transition-all duration-200 hover:scale-105 active:scale-95",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(WalletIcon, {
+                                                className: "w-5 h-5"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 1117,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "truncate",
+                                                children: "New Wallet"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 1118,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 1113,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1112,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 1103,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8",
+                            children: [
+                                wallets.map((wallet, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(WalletCard, {
+                                        wallet: wallet,
+                                        isSelected: (selectedWallet === null || selectedWallet === void 0 ? void 0 : selectedWallet.wallet_id) === wallet.wallet_id,
+                                        onSelect: ()=>setSelectedWallet(wallet),
+                                        index: index
+                                    }, wallet.wallet_id, false, {
+                                        fileName: "[project]/src/app/pages/dashboard/page.js",
+                                        lineNumber: 1126,
+                                        columnNumber: 15
+                                    }, this)),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    onClick: ()=>setShowWalletModal(true),
+                                    className: "flex flex-col items-center justify-center gap-4 rounded-xl bg-white/5 p-6 border-2 border-dashed border-white/20 hover:border-[#9b177e] hover:bg-black/20 transition-all duration-300 cursor-pointer group hover:scale-105",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex items-center justify-center size-16 rounded-full bg-[#9b177e]/20 group-hover:bg-[#9b177e]/30 transition-colors",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AddIcon, {
+                                                className: "w-8 h-8 text-[#9b177e] group-hover:scale-110 transition-transform"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                lineNumber: 1141,
+                                                columnNumber: 17
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1140,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[#FFEAD8] font-semibold text-center",
+                                            children: "Add New Wallet"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1143,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[#FFEAD8]/70 text-sm text-center",
+                                            children: "Create a new wallet to organize your finances"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                                            lineNumber: 1146,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1136,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 1124,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "grid grid-cols-1 lg:grid-cols-3 gap-8",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BudgetCard, {}, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1154,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(GoalsCard, {}, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1155,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(TransactionsCard, {
+                                    transactions: transactions,
+                                    loading: transactionsLoading
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                    lineNumber: 1156,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/pages/dashboard/page.js",
+                            lineNumber: 1153,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                    lineNumber: 1101,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 1100,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AddWalletModal, {
+                isOpen: showWalletModal,
+                onClose: ()=>setShowWalletModal(false),
+                onSubmit: handleAddWallet
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 1165,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(EditWalletModal, {
+                isOpen: showEditWalletModal,
+                onClose: ()=>{
+                    setShowEditWalletModal(false);
+                    setWalletToEdit(null);
+                },
+                onSubmit: handleEditWallet,
+                wallet: walletToEdit
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 1171,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DeleteWalletModal, {
+                isOpen: showDeleteWalletModal,
+                onClose: ()=>{
+                    setShowDeleteWalletModal(false);
+                    setWalletToDelete(null);
+                },
+                onConfirm: handleDeleteWallet,
+                wallet: walletToDelete
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/dashboard/page.js",
+                lineNumber: 1181,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/pages/dashboard/page.js",
+        lineNumber: 1096,
+        columnNumber: 5
+    }, this);
+}
+_s(WalletsPage, "YL7BFFuJlvWtqC6QoK3HEl7T4I0=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$userContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useUser"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useWallets$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWallets"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useTransactions$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransactions"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
+    ];
+});
+_c = WalletsPage;
+var _c;
+__turbopack_context__.k.register(_c, "WalletsPage");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+]);
+
+//# sourceMappingURL=src_3158e1ad._.js.map

@@ -590,14 +590,14 @@ async function createMultipleGoals(goalsArray) {
     };
 }
 async function updateGoal(goalId, updates) {
-    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").update(updates).eq("id", goalId).select();
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").update(updates).eq("goal_id", goalId).select();
     return {
         data,
         error
     };
 }
 async function deleteGoal(goalId) {
-    const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").delete().eq("id", goalId);
+    const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("goals").delete().eq("goal_id", goalId);
     return {
         error
     };
@@ -768,6 +768,11 @@ const useGoal = ()=>{
                     });
                 }
             }
+        }["useGoal.useMutation[createGoalMutation]"],
+        onError: {
+            "useGoal.useMutation[createGoalMutation]": (error)=>{
+                console.error("Error creating goal:", error);
+            }
         }["useGoal.useMutation[createGoalMutation]"]
     });
     const createMultipleGoalsMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
@@ -790,26 +795,34 @@ const useGoal = ()=>{
             }
         }["useGoal.useMutation[updateGoalMutation]"],
         onSuccess: {
-            "useGoal.useMutation[updateGoalMutation]": (result, variables)=>{
+            "useGoal.useMutation[updateGoalMutation]": (result)=>{
                 if (result.data) {
-                    queryClient.setQueryData(goalKeys.lists(), {
-                        "useGoal.useMutation[updateGoalMutation]": (old)=>old === null || old === void 0 ? void 0 : old.map({
-                                "useGoal.useMutation[updateGoalMutation]": (goal)=>goal.id === variables.goalId ? result.data[0] : goal
-                            }["useGoal.useMutation[updateGoalMutation]"])
-                    }["useGoal.useMutation[updateGoalMutation]"]);
+                    queryClient.invalidateQueries({
+                        queryKey: goalKeys.lists()
+                    });
                 }
+            }
+        }["useGoal.useMutation[updateGoalMutation]"],
+        onError: {
+            "useGoal.useMutation[updateGoalMutation]": (error)=>{
+                console.error("Error updating goal:", error);
             }
         }["useGoal.useMutation[updateGoalMutation]"]
     });
     const deleteGoalMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
-        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].deleteGoal,
+        mutationFn: {
+            "useGoal.useMutation[deleteGoalMutation]": (goalId)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].deleteGoal(goalId)
+        }["useGoal.useMutation[deleteGoalMutation]"],
         onSuccess: {
-            "useGoal.useMutation[deleteGoalMutation]": (result, variables)=>{
-                queryClient.setQueryData(goalKeys.lists(), {
-                    "useGoal.useMutation[deleteGoalMutation]": (old)=>old === null || old === void 0 ? void 0 : old.filter({
-                            "useGoal.useMutation[deleteGoalMutation]": (goal)=>goal.id !== variables
-                        }["useGoal.useMutation[deleteGoalMutation]"])
-                }["useGoal.useMutation[deleteGoalMutation]"]);
+            "useGoal.useMutation[deleteGoalMutation]": ()=>{
+                queryClient.invalidateQueries({
+                    queryKey: goalKeys.lists()
+                });
+            }
+        }["useGoal.useMutation[deleteGoalMutation]"],
+        onError: {
+            "useGoal.useMutation[deleteGoalMutation]": (error)=>{
+                console.error("Error deleting goal: ", error);
             }
         }["useGoal.useMutation[deleteGoalMutation]"]
     });
@@ -828,12 +841,12 @@ const useGoal = ()=>{
     const deleteGoal = (goalId)=>{
         return deleteGoalMutation.mutateAsync(goalId);
     };
-    const clearError = ()=>{
-        createGoalMutation.reset();
-        createMultipleGoalsMutation.reset();
-        updateGoalMutation.reset();
-        deleteGoalMutation.reset();
-    };
+    // const clearError = () => {
+    //   createGoalMutation.reset();
+    //   createMultipleGoalsMutation.reset();
+    //   updateGoalMutation.reset();
+    //   deleteGoalMutation.reset();
+    // };
     return {
         // Query methods
         getGoals,
@@ -842,7 +855,7 @@ const useGoal = ()=>{
         createMultipleGoals,
         updateGoal,
         deleteGoal,
-        clearError,
+        // clearError,
         // Mutation states
         mutations: {
             createGoal: createGoalMutation,

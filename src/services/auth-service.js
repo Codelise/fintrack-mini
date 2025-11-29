@@ -3,7 +3,7 @@ import {
   signIn as signInQuery,
   signOut as signOutQuery,
 } from "../api/auth/route";
-
+import { supabase } from "@/lib/supabase";
 export class AuthService {
   async signUp(userData) {
     if (!userData.firstName?.trim() || !userData.lastName?.trim()) {
@@ -27,12 +27,12 @@ export class AuthService {
   }
 
   async signIn(credentials) {
-    if (!credentials.email || !credentials.password) {
-      throw new Error("Email and password are required");
-    }
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: credentials.email,
+      password: credentials.password,
+    });
 
-    const result = await signInQuery(credentials.email, credentials.password);
-    return result;
+    return { data, error };
   }
 
   async signOut() {

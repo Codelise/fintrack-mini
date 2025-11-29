@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="w-full flex items-center z-1000 bg-[#382935] fixed justify-between whitespace-nowrap border-b border-solid border-b-darkBorder px-4 py-3 sm:px-6 md:px-10">
+      <header className="w-full flex items-center z-1000 bg-[#382935] fixed justify-between whitespace-nowrap  border-solid  px-4 py-3 sm:px-6 md:px-10">
         <div className="flex items-center  gap-4 text-white">
           <div className="w-auto flex items-center">
             <Image
@@ -67,12 +67,6 @@ export default function Navbar() {
             </Link>
             <Link
               className="text-white text-lg font-medium leading-normal hover:text-lightText transition-colors"
-              href="/pages/dashboard/reports"
-            >
-              Reports
-            </Link>
-            <Link
-              className="text-white text-lg font-medium leading-normal hover:text-lightText transition-colors"
               href="/pages/dashboard/budget"
             >
               Budget
@@ -82,6 +76,12 @@ export default function Navbar() {
               href="/pages/dashboard/goal"
             >
               Goal
+            </Link>
+            <Link
+              className="text-white text-lg font-medium leading-normal hover:text-lightText transition-colors"
+              href="/pages/dashboard/wallet"
+            >
+              Wallet
             </Link>
             <button
               onClick={() => setShowLogoutModal(true)}

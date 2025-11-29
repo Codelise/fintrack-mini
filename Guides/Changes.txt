@@ -94,8 +94,24 @@ Nov 28:
 - modified dashboard, budget, goal = added margin top = 10 for navbar
 
 Activtiy 7
-
-
+- npm install @supabase/ssr
+- 
+-
 
 TO BE IMPLEMENTED: transactions
+- created transactions page
+- updated api/transactions/route.js to have update and delete
+- created services/transaction-service.js
+- created hooks/useTransactions.js
+- modified Provider.js to use UserProvider
+- modified userContext.js
 
+Nov 29:
+- modified api/wallet/route.js
+- created wallet-service.js
+- created useWallet.js
+- added wallet link to Navbar
+- created wallet page
+- modified transactions page
+- modified categories table = removed user_id, icon, color. Inserted categories data
+- changed dashboard content to be wallet page
