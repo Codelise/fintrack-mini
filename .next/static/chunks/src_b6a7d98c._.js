@@ -42,36 +42,41 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 const publicRoutes = [
-    "/login",
-    "/signup",
-    "/forgot-password",
-    "/"
+    "/",
+    "/pages/login",
+    "/pages/signup",
+    "/pages/forgot-password"
 ];
 const authRoutes = [
-    "/login",
-    "/signup",
-    "/forgot-password"
+    "/pages/login",
+    "/pages/signup",
+    "/pages/forgot-password"
+];
+const protectedRoutes = [
+    "/pages/dashboard"
 ];
 function AuthGuard(param) {
     let { children } = param;
     _s();
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [authenticated, setAuthenticated] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AuthGuard.useEffect": ()=>{
-            checkAuth();
+            const initializeAuth = {
+                "AuthGuard.useEffect.initializeAuth": async ()=>{
+                    const hasVisited = sessionStorage.getItem("fintrack_visited");
+                    if (!hasVisited) {
+                        sessionStorage.setItem("fintrack_visited", "true");
+                        await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
+                    }
+                    await checkAuth();
+                }
+            }["AuthGuard.useEffect.initializeAuth"];
+            initializeAuth();
             const { data: { subscription } } = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.onAuthStateChange({
                 "AuthGuard.useEffect": async (event, session)=>{
-                    if (event === "SIGNED_IN") {
-                        setAuthenticated(true);
-                        handleAuthRedirect(pathname, true);
-                    } else if (event === "SIGNED_OUT") {
-                        setAuthenticated(false);
-                        handleAuthRedirect(pathname, false);
-                    }
-                    setLoading(false);
+                    await checkAuth();
                 }
             }["AuthGuard.useEffect"]);
             return ({
@@ -84,44 +89,47 @@ function AuthGuard(param) {
     const checkAuth = async ()=>{
         try {
             const { data: { session } } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.getSession();
-            setAuthenticated(!!session);
-            handleAuthRedirect(pathname, !!session);
+            const isAuthenticated = !!session;
+            const isPublicRoute = publicRoutes.includes(pathname);
+            const isAuthRoute = authRoutes.includes(pathname);
+            const isProtectedRoute = protectedRoutes.some((route)=>pathname.startsWith(route));
+            if (isAuthenticated && isAuthRoute) {
+                router.push("/pages/dashboard");
+                return;
+            }
+            if (!isAuthenticated && isProtectedRoute) {
+                router.push("/pages/login");
+                return;
+            }
         } catch (error) {
             console.error("Auth check failed:", error);
-            handleAuthRedirect(pathname, false);
+            if (protectedRoutes.some((route)=>pathname.startsWith(route))) {
+                router.push("/pages/login");
+            }
         } finally{
             setLoading(false);
-        }
-    };
-    const handleAuthRedirect = (currentPath, isAuthenticated)=>{
-        const isPublicRoute = publicRoutes.includes(currentPath);
-        const isAuthRoute = authRoutes.includes(currentPath);
-        if (isAuthenticated && isAuthRoute) {
-            router.push("/dashboard");
-        } else if (!isAuthenticated && !isPublicRoute) {
-            router.push("/login");
         }
     };
     if (loading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "min-h-screen flex items-center justify-center bg-darkBg",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-white text-lg",
+                className: "text-white",
                 children: "Loading..."
             }, void 0, false, {
                 fileName: "[project]/src/app/components/AuthGuard.js",
-                lineNumber: 63,
+                lineNumber: 79,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/components/AuthGuard.js",
-            lineNumber: 62,
+            lineNumber: 78,
             columnNumber: 7
         }, this);
     }
     return children;
 }
-_s(AuthGuard, "i197JmtVjy+B0V0f5IVlkZLORwU=", false, function() {
+_s(AuthGuard, "OHA+saCMwdFkbw0BD8R1UGCyM20=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"]

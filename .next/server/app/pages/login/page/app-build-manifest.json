@@ -1,6 +1,7 @@
 {
   "pages": {
     "/pages/login/page": [
+<<<<<<< HEAD
       "static/chunks/34ad9_next_dist_3faad095._.js",
       "static/chunks/OneDrive_Desktop_FinTrack-IT-Elective-2_src_app_favicon_ico_mjs_4e7a5a48._.js",
       "static/chunks/OneDrive_Desktop_FinTrack-IT-Elective-2_src_app_globals_6e796a4a.css",
@@ -18,6 +19,26 @@
       "static/chunks/34ad9_@swc_helpers_cjs_554f82b3._.js",
       "static/chunks/OneDrive_Desktop_FinTrack-IT-Elective-2_a0ff3932._.js",
       "static/chunks/turbopack-OneDrive_Desktop_FinTrack-IT-Elective-2_eafb132b._.js"
+=======
+      "static/chunks/node_modules_next_dist_8db7fb1f._.js",
+      "static/chunks/src_app_favicon_ico_mjs_243aa161._.js",
+      "static/chunks/node_modules_673c7aa0._.js",
+      "static/chunks/src_7e1e51b5._.js",
+      "static/chunks/src_app_globals_91e4631d.css",
+      "static/chunks/src_app_layout_0a548d63.js",
+      "static/chunks/node_modules_next_dist_client_components_builtin_global-error_4c7ebf89.js",
+      "static/chunks/_67c89de7._.js",
+      "static/chunks/src_app_pages_login_page_4c7ebf89.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_57d40746._.js",
+      "static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js",
+      "static/chunks/node_modules_next_dist_compiled_next-devtools_index_a9cb0712.js",
+      "static/chunks/node_modules_next_dist_compiled_5150ccfd._.js",
+      "static/chunks/node_modules_next_dist_client_cf1d9188._.js",
+      "static/chunks/node_modules_next_dist_b0daae9a._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_b3dc30d6._.js",
+      "static/chunks/_a0ff3932._.js",
+      "static/chunks/turbopack-_cdba956c._.js"
+>>>>>>> 922ef849142dc029589ce554b53384aeed7155fd
     ]
   }
 }
