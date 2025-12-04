@@ -4,7 +4,6 @@ import { use, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "@/utils/supabase-client";
 import Header from "@/app/components/Header";
-import AuthGuard from "@/app/components/AuthGuard";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -55,7 +54,6 @@ export default function Login() {
   };
 
   return (
-    <AuthGuard requireAuth={false}>
       <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#171116] dark group/design-root overflow-x-hidden">
         <div className="layout-container flex h-full grow flex-col">
           <Header showLoginButton={false} />
@@ -183,6 +181,5 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </AuthGuard>
   );
 }
