@@ -5,12 +5,40 @@ import { supabase } from "@/lib/supabase";
 
 const UserContext = createContext();
 
-export function UserProvider({ children }) {
-  const [user, setUser] = useState(null);
+export function UserProvider({ children, initialSession }) {
+  // If the server supplied an initialSession prop, use it to avoid an
+  // unnecessary client-side roundtrip.
+  const [user, setUser] = useState(initialSession?.user ?? null);
   const [isOnboarded, setIsOnboarded] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(initialSession ? false : true);
+
   useEffect(() => {
-    // Get initial session from Supabase
+    // If the server provided an initial session, skip the immediate getSession
+    // call but still subscribe to auth state changes so the client stays in sync.
+    let mounted = true;
+
+    const setupSubscription = () => {
+      const {
+        data: { subscription },
+      } = supabase.auth.onAuthStateChange(async (event, session) => {
+        setUser(session?.user ?? null);
+        setLoading(false);
+
+        if (event === "SIGNED_OUT") {
+          setIsOnboarded(false);
+        }
+      });
+
+      return () => subscription.unsubscribe();
+    };
+
+    if (initialSession && initialSession.user) {
+      // Server provided user — skip fetching; still subscribe.
+      const unsub = setupSubscription();
+      return unsub;
+    }
+
+    // No initial session from server — perform normal client session check.
     const getSession = async () => {
       try {
         const {
@@ -18,60 +46,32 @@ export function UserProvider({ children }) {
           error,
         } = await supabase.auth.getSession();
 
-        console.log("UserContext - Session:", session?.user?.id); // Debug
-        console.log("UserContext - Error:", error); // Debug
-
         if (error) {
           console.error("Error getting session:", error);
           return;
         }
 
         if (session?.user) {
-          console.log("UserContext - Setting user:", session.user.id);
           setUser(session.user);
-
-          // Check if user is onboarded (you can add your logic here)
-          // const { data: profile } = await supabase.from('profiles').select('is_onboarded').eq('id', session.user.id).single();
-          // setIsOnboarded(profile?.is_onboarded || false);
         } else {
-          console.log("UserContext - No user found");
           setUser(null);
         }
       } catch (error) {
         console.error("Error in getSession:", error);
       } finally {
-        setLoading(false);
+        if (mounted) setLoading(false);
       }
     };
 
     getSession();
+    const unsub = setupSubscription();
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log(
-        "UserContext - Auth state changed:",
-        event,
-        session?.user?.id
-      );
+    return () => {
+      mounted = false;
+      if (typeof unsub === "function") unsub();
+    };
+  }, [initialSession]);
 
-      setUser(session?.user ?? null);
-      setLoading(false);
-
-      // Reset onboarding when user signs out
-      if (event === "SIGNED_OUT") {
-        setIsOnboarded(false);
-      }
-
-      // Check onboarding when user signs in
-      if (event === "SIGNED_IN" && session?.user) {
-        // Add your onboarding check logic here
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
   return (
     <UserContext.Provider
       value={{

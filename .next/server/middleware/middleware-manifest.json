@@ -3,33 +3,34 @@
   "middleware": {
     "/": {
       "files": [
-        "server/edge/chunks/_79f3b801._.js",
-        "server/edge/chunks/node_modules_@supabase_storage-js_dist_module_2fe79818._.js",
-        "server/edge/chunks/node_modules_@supabase_auth-js_dist_module_33c852e9._.js",
-        "server/edge/chunks/node_modules_97d3f57c._.js",
-        "server/edge/chunks/[root-of-the-server]__bd1f2d1c._.js",
-        "server/edge/chunks/turbopack-edge-wrapper_b6361c79.js"
+        "server/edge/chunks/_2bfa59cf._.js",
+        "server/edge/chunks/[root-of-the-server]__140a91e5._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_937effaf.js"
       ],
       "name": "middleware",
       "page": "/",
       "matchers": [
         {
-          "regexp": "/:nextData(_next/data/[^/]{1,})?/(/?index|/?index\\\\.json)?",
-          "originalSource": "/"
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/pages/login{(\\\\.json)}?",
+          "originalSource": "/pages/login"
         },
         {
-          "regexp": "/:nextData(_next/data/[^/]{1,})?/pages/:path*{(\\\\.json)}?",
-          "originalSource": "/pages/:path*"
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/pages/signup{(\\\\.json)}?",
+          "originalSource": "/pages/signup"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/pages/dashboard/:path*{(\\\\.json)}?",
+          "originalSource": "/pages/dashboard/:path*"
         }
       ],
       "wasm": [],
       "assets": [],
       "env": {
         "__NEXT_BUILD_ID": "development",
-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "6BZ2euHHJs6QMuDVDuyrATie8O7/xgh2qsVeib5/sPE=",
-        "__NEXT_PREVIEW_MODE_ID": "fa7c6435789ecc2521943595bfd3bd0e",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "ab6ba2224dec552fee1f432a7f5bc391e4d5e761e81f1f160df50b66b7089cd5",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "72d492a9e77cf28784d997e01377c30bbc221832164db969b0df30d57ccec5c4"
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "sTyYoEbNRI63XaCu9Zv6Ba45fsGuRKo9vDsAio8s8rY=",
+        "__NEXT_PREVIEW_MODE_ID": "3569e3e3fd67bdfffee3e33594882c11",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "e77e584de88f2c6642290f8bdda8cb00265da9f67c992745a0a5cadbddf89c4d",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "256edbdecc26c0227c81ef2b00cfc921206701da8740ecd5f7b5d00eba5db423"
       }
     }
   },

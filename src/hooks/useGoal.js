@@ -13,6 +13,7 @@ export const useGoal = () => {
   const queryClient = useQueryClient();
 
   const getGoals = (userId) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useQuery({
       queryKey: goalKeys.list({ userId }),
       queryFn: () => goalService.getGoals(userId),

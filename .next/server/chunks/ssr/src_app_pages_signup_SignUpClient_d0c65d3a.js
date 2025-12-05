@@ -1,0 +1,3 @@
+module.exports=[56068,a=>{"use strict";a.s(["default",()=>c]);var b=a.i(87924);function c(){return(0,b.jsx)("div",{className:"min-h-screen bg-[#21121e] text-white",children:(0,b.jsx)("div",{className:"flex items-center justify-center min-h-screen",children:(0,b.jsxs)("div",{className:"text-center",children:[(0,b.jsx)("h2",{className:"text-2xl font-bold mb-4",children:"Sign Up"}),(0,b.jsx)("p",{className:"text-gray-400",children:"Sign up client component loading..."})]})})})}}];
+
+//# sourceMappingURL=src_app_pages_signup_SignUpClient_d0c65d3a.js.map

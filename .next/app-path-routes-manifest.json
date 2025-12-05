@@ -1,0 +1,14 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/pages/dashboard/budget/page": "/pages/dashboard/budget",
+  "/pages/dashboard/goal/page": "/pages/dashboard/goal",
+  "/pages/dashboard/page": "/pages/dashboard",
+  "/pages/dashboard/transactions/page": "/pages/dashboard/transactions",
+  "/pages/dashboard/wallet/page": "/pages/dashboard/wallet",
+  "/pages/login/page": "/pages/login",
+  "/pages/setBudget/page": "/pages/setBudget",
+  "/pages/setGoal/page": "/pages/setGoal",
+  "/pages/signup/page": "/pages/signup"
+}

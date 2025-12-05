@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,18566,(e,t,u)=>{t.exports=e.r(76562)},93359,e=>{"use strict";e.s(["default",()=>s]);var t=e.i(71645),u=e.i(18566);function s(){let e=(0,u.useRouter)();return(0,t.useEffect)(()=>{e.push("/pages/dashboard/wallet")},[e]),null}}]);

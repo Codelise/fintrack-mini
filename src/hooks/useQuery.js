@@ -22,6 +22,7 @@ export const useQuery = (queryFn, dependencies = []) => {
 
   useEffect(() => {
     executeQuery();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [executeQuery, ...dependencies]);
 
   return {

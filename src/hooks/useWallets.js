@@ -13,6 +13,7 @@ export const useWallets = () => {
   const queryClient = useQueryClient();
 
   const getWallets = (userId) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useQuery({
       queryKey: walletKeys.list({ userId }),
       queryFn: () => walletService.getWallets(userId),

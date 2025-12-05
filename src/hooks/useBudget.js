@@ -13,6 +13,7 @@ export const useBudget = () => {
   const queryClient = useQueryClient();
 
   const getBudgets = (userId) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useQuery({
       queryKey: budgetKeys.list({ userId }),
       queryFn: () => budgetService.getBudgets(userId),

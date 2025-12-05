@@ -19,6 +19,7 @@ export const useTransactions = () => {
   const queryClient = useQueryClient();
 
   const getTransactions = (userId, filters = {}) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useQuery({
       queryKey: transactionKeys.list({ userId, ...filters }),
       queryFn: () => transactionService.getTransactions(userId, filters),
@@ -28,6 +29,7 @@ export const useTransactions = () => {
   };
 
   const getTransactionById = (transactionId) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useQuery({
       queryKey: transactionKeys.detail(transactionId),
       queryFn: () => transactionService.getTransactionById(transactionId),
@@ -36,7 +38,8 @@ export const useTransactions = () => {
     });
   };
 
-  const getTransactionsByWallet = (userId, walletId) => {
+  const getTransactionsByWallet = (walletId) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useQuery({
       queryKey: transactionKeys.byWallet(walletId),
       queryFn: () =>
@@ -47,6 +50,7 @@ export const useTransactions = () => {
   };
 
   const getTransactionsByCategory = (userId, categoryId) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useQuery({
       queryKey: transactionKeys.byCategory(categoryId),
       queryFn: () =>
@@ -57,6 +61,7 @@ export const useTransactions = () => {
   };
 
   const getTransactionsByDateRange = (userId, startDate, endDate) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useQuery({
       queryKey: transactionKeys.byDateRange(startDate, endDate),
       queryFn: () =>

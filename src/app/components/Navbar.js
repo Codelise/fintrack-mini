@@ -57,7 +57,7 @@ export default function Navbar() {
               className="text-white text-lg font-medium leading-normal hover:text-lightText transition-colors"
               href="/pages/dashboard"
             >
-              Dashboard
+              Wallet
             </Link>
             <Link
               className="text-white text-lg font-medium leading-normal hover:text-lightText transition-colors"
@@ -77,12 +77,12 @@ export default function Navbar() {
             >
               Goal
             </Link>
-            <Link
+            {/* <Link
               className="text-white text-lg font-medium leading-normal hover:text-lightText transition-colors"
               href="/pages/dashboard/wallet"
             >
               Wallet
-            </Link>
+            </Link> */}
             <button
               onClick={() => setShowLogoutModal(true)}
               className="flex min-w-[84px] cursor-pointer items-center justify-center outline-0 rounded-lg h-10 px-4 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-[#8a156f]"
@@ -170,7 +170,7 @@ export default function Navbar() {
                   className="text-white text-lg font-medium leading-normal hover:text-lightText transition-colors"
                   href="/pages/dashboard"
                 >
-                  Dashboard
+                  Wallet
                 </Link>
                 <Link
                   className="text-white text-lg font-medium leading-normal hover:text-lightText transition-colors"
